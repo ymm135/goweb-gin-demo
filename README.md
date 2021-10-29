@@ -101,7 +101,7 @@ docs/
 └── swagger.yaml
 ```
 
-> 需要注意把docs文件夹导入到代码中 `import "github.com/ymm135/goweb-gin-demo/docs"`  
+> 需要注意把docs文件夹导入到代码中 `import "goweb-gin-demo/docs"`  
 
 # 验证码获取及校验  
 首选通过`/base/captcha`获取验证码,其中包含验证码图片地址:`data:image/png;...`  

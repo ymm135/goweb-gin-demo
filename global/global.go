@@ -2,13 +2,13 @@ package global
 
 import (
 	"github.com/songzhibin97/gkit/cache/local_cache"
-	"github.com/ymm135/goweb-gin-demo/utils/timer"
+	"goweb-gin-demo/utils/timer"
 
 	"golang.org/x/sync/singleflight"
 
 	"go.uber.org/zap"
 
-	"github.com/ymm135/goweb-gin-demo/config"
+	"goweb-gin-demo/config"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"

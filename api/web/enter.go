@@ -1,7 +1,7 @@
 package web
 
 import (
-	"github.com/ymm135/goweb-gin-demo/service"
+	"goweb-gin-demo/service"
 )
 
 type ApiGroup struct {

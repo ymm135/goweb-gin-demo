@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/initialize"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/initialize"
 	"go.uber.org/zap"
 	"time"
 )

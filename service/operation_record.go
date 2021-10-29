@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/request"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	systemReq "github.com/ymm135/goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/request"
+	"goweb-gin-demo/model/web"
+	systemReq "goweb-gin-demo/model/web/request"
 )
 
 //@author: [granty1](https://github.com/granty1)

@@ -1,14 +1,14 @@
 package middleware
 
 import (
-	"github.com/ymm135/goweb-gin-demo/utils"
+	"goweb-gin-demo/utils"
 	"strconv"
 	"time"
 
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/response"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	"github.com/ymm135/goweb-gin-demo/service"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/response"
+	"goweb-gin-demo/model/web"
+	"goweb-gin-demo/service"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"

@@ -1,8 +1,8 @@
 package request
 
 import (
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/web"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/web"
 )
 
 // Add menu authority info structure

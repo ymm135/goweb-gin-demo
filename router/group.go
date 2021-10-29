@@ -1,6 +1,6 @@
 package router
 
-import "github.com/ymm135/goweb-gin-demo/router/web"
+import "goweb-gin-demo/router/web"
 
 type RouterGroup struct {
 	web.BaseRouter

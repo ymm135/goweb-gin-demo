@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/ymm135/goweb-gin-demo/core"
-	_ "github.com/ymm135/goweb-gin-demo/docs"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/initialize"
+	"goweb-gin-demo/core"
+	_ "goweb-gin-demo/docs"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/initialize"
 )
 
 func main() {

@@ -2,10 +2,10 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/response"
-	"github.com/ymm135/goweb-gin-demo/model/web/request"
-	"github.com/ymm135/goweb-gin-demo/service"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/response"
+	"goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/service"
 )
 
 var casbinService = service.ServiceGroupApp.CasbinService

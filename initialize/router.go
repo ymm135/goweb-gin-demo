@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/middleware"
-	"github.com/ymm135/goweb-gin-demo/router"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/middleware"
+	"goweb-gin-demo/router"
 )
 
 func Routers() *gin.Engine {

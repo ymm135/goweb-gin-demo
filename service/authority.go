@@ -4,10 +4,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/request"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	"github.com/ymm135/goweb-gin-demo/model/web/response"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/request"
+	"goweb-gin-demo/model/web"
+	"goweb-gin-demo/model/web/response"
 	"gorm.io/gorm"
 )
 

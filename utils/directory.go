@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 	"go.uber.org/zap"
 )
 

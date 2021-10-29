@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/utils"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/utils"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

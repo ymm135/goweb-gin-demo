@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/utils"
 )

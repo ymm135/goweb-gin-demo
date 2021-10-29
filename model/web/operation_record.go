@@ -4,7 +4,7 @@ package web
 import (
 	"time"
 
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 )
 
 // 如果含有time.Time 请自行import time包

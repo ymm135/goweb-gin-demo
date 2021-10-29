@@ -9,7 +9,7 @@ import (
 	"time"
 
 	zaprotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 	"go.uber.org/zap/zapcore"
 )
 

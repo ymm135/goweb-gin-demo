@@ -1,4 +1,4 @@
-module github.com/ymm135/goweb-gin-demo
+module goweb-gin-demo
 
 go 1.16
 

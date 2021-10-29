@@ -5,7 +5,7 @@ import (
 	"path"
 	"time"
 
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 	zaprotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"go.uber.org/zap/zapcore"
 )

@@ -3,9 +3,9 @@ package web
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/mojocn/base64Captcha"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/response"
-	webRes "github.com/ymm135/goweb-gin-demo/model/web/response"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/response"
+	webRes "goweb-gin-demo/model/web/response"
 	"go.uber.org/zap"
 )
 

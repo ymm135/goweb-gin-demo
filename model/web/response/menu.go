@@ -1,6 +1,6 @@
 package response
 
-import "github.com/ymm135/goweb-gin-demo/model/web"
+import "goweb-gin-demo/model/web"
 
 type SysMenusResponse struct {
 	Menus []web.SysMenu `json:"menus"`

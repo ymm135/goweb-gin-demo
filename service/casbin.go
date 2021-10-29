@@ -9,9 +9,9 @@ import (
 	"github.com/casbin/casbin/v2/util"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	"github.com/ymm135/goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/web"
+	"goweb-gin-demo/model/web/request"
 )
 
 //@author: [piexlmax](https://github.com/piexlmax)

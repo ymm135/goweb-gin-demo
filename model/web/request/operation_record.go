@@ -1,8 +1,8 @@
 package request
 
 import (
-	"github.com/ymm135/goweb-gin-demo/model/common/request"
-	"github.com/ymm135/goweb-gin-demo/model/web"
+	"goweb-gin-demo/model/common/request"
+	"goweb-gin-demo/model/web"
 )
 
 type SysOperationRecordSearch struct {

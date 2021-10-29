@@ -2,7 +2,7 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/ymm135/goweb-gin-demo/api"
+	v1 "goweb-gin-demo/api"
 )
 
 type JwtRouter struct {

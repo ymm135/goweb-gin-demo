@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	"github.com/ymm135/goweb-gin-demo/model/web/request"
-	"github.com/ymm135/goweb-gin-demo/service"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/web"
+	"goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/service"
 	"go.uber.org/zap"
 )
 

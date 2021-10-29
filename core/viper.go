@@ -9,9 +9,9 @@ import (
 
 	"github.com/songzhibin97/gkit/cache/local_cache"
 
-	"github.com/ymm135/goweb-gin-demo/global"
-	_ "github.com/ymm135/goweb-gin-demo/packfile"
-	"github.com/ymm135/goweb-gin-demo/utils"
+	"goweb-gin-demo/global"
+	_ "goweb-gin-demo/packfile"
+	"goweb-gin-demo/utils"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"

@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/initialize/internal"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/initialize/internal"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

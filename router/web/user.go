@@ -2,8 +2,8 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/ymm135/goweb-gin-demo/api"
-	"github.com/ymm135/goweb-gin-demo/middleware"
+	v1 "goweb-gin-demo/api"
+	"goweb-gin-demo/middleware"
 )
 
 type UserRouter struct {

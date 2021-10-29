@@ -1,7 +1,7 @@
 package web
 
 import (
-	"github.com/ymm135/goweb-gin-demo/global"
+	"goweb-gin-demo/global"
 )
 
 type SysBaseMenu struct {

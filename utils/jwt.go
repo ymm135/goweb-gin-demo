@@ -3,8 +3,8 @@ package utils
 import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/web/request"
 )
 
 type JWT struct {

@@ -1,13 +1,13 @@
 package web
 
 import (
-	"github.com/ymm135/goweb-gin-demo/global"
-	"github.com/ymm135/goweb-gin-demo/model/common/request"
-	"github.com/ymm135/goweb-gin-demo/model/common/response"
-	"github.com/ymm135/goweb-gin-demo/model/web"
-	systemReq "github.com/ymm135/goweb-gin-demo/model/web/request"
-	systemRes "github.com/ymm135/goweb-gin-demo/model/web/response"
-	"github.com/ymm135/goweb-gin-demo/utils"
+	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common/request"
+	"goweb-gin-demo/model/common/response"
+	"goweb-gin-demo/model/web"
+	systemReq "goweb-gin-demo/model/web/request"
+	systemRes "goweb-gin-demo/model/web/response"
+	"goweb-gin-demo/utils"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
