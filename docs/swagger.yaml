@@ -1,0 +1,680 @@
+definitions:
+  request.AddMenuAuthorityInfo:
+    properties:
+      authorityId:
+        description: 角色ID
+        type: string
+      menus:
+        items:
+          $ref: '#/definitions/web.SysBaseMenu'
+        type: array
+    type: object
+  request.ChangePasswordStruct:
+    properties:
+      newPassword:
+        description: 新密码
+        type: string
+      password:
+        description: 密码
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  request.Empty:
+    type: object
+  request.GetAuthorityId:
+    properties:
+      authorityId:
+        description: 角色ID
+        type: string
+    type: object
+  request.GetById:
+    properties:
+      id:
+        description: 主键ID
+        type: number
+    type: object
+  request.Login:
+    properties:
+      captcha:
+        description: 验证码
+        type: string
+      captchaId:
+        description: 验证码ID
+        type: string
+      password:
+        description: 密码
+        type: string
+      username:
+        description: 用户名
+        type: string
+    type: object
+  request.PageInfo:
+    properties:
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+    type: object
+  request.Register:
+    properties:
+      authorityId:
+        type: string
+      authorityIds:
+        items:
+          type: string
+        type: array
+      headerImg:
+        type: string
+      nickName:
+        type: string
+      passWord:
+        type: string
+      userName:
+        type: string
+    type: object
+  request.SetUserAuth:
+    properties:
+      authorityId:
+        description: 角色ID
+        type: string
+    type: object
+  request.SetUserAuthorities:
+    properties:
+      authorityIds:
+        description: 角色ID
+        items:
+          type: string
+        type: array
+      id:
+        type: integer
+    type: object
+  web.SysAuthority:
+    properties:
+      authorityId:
+        description: 角色ID
+        type: string
+      authorityName:
+        description: 角色名
+        type: string
+      children:
+        items:
+          $ref: '#/definitions/web.SysAuthority'
+        type: array
+      createdAt:
+        description: 创建时间
+        type: string
+      dataAuthorityId:
+        items:
+          $ref: '#/definitions/web.SysAuthority'
+        type: array
+      defaultRouter:
+        description: 默认菜单(默认dashboard)
+        type: string
+      deletedAt:
+        type: string
+      menus:
+        items:
+          $ref: '#/definitions/web.SysBaseMenu'
+        type: array
+      parentId:
+        description: 父角色ID
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+    type: object
+  web.SysBaseMenu:
+    properties:
+      authoritys:
+        items:
+          $ref: '#/definitions/web.SysAuthority'
+        type: array
+      children:
+        items:
+          $ref: '#/definitions/web.SysBaseMenu'
+        type: array
+      closeTab:
+        description: 自动关闭tab
+        type: boolean
+      component:
+        description: 对应前端文件路径
+        type: string
+      createdAt:
+        description: 创建时间
+        type: string
+      defaultMenu:
+        description: 是否是基础路由（开发中）
+        type: boolean
+      hidden:
+        description: 是否在列表隐藏
+        type: boolean
+      icon:
+        description: 菜单图标
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      keepAlive:
+        description: 是否缓存
+        type: boolean
+      name:
+        description: 路由name
+        type: string
+      parameters:
+        items:
+          $ref: '#/definitions/web.SysBaseMenuParameter'
+        type: array
+      parentId:
+        description: 父菜单ID
+        type: string
+      path:
+        description: 路由path
+        type: string
+      sort:
+        description: 排序标记
+        type: integer
+      title:
+        description: 菜单名
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+    type: object
+  web.SysBaseMenuParameter:
+    properties:
+      createdAt:
+        description: 创建时间
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      key:
+        description: 地址栏携带参数的key
+        type: string
+      sysBaseMenuID:
+        type: integer
+      type:
+        description: 地址栏携带参数为params还是query
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+      value:
+        description: 地址栏携带参数的值
+        type: string
+    type: object
+  web.SysUser:
+    properties:
+      activeColor:
+        description: 活跃颜色
+        type: string
+      authorities:
+        items:
+          $ref: '#/definitions/web.SysAuthority'
+        type: array
+      authority:
+        $ref: '#/definitions/web.SysAuthority'
+      authorityId:
+        description: 用户角色ID
+        type: string
+      baseColor:
+        description: 基础颜色
+        type: string
+      createdAt:
+        description: 创建时间
+        type: string
+      headerImg:
+        description: 用户头像
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      nickName:
+        description: 用户昵称
+        type: string
+      sideMode:
+        description: 用户侧边主题
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+      userName:
+        description: 用户登录名
+        type: string
+      uuid:
+        description: 用户UUID
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /base/captcha:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"验证码获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 生成验证码
+      tags:
+      - Base
+  /base/login:
+    post:
+      parameters:
+      - description: 用户名, 密码, 验证码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"登陆成功"}'
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - Base
+  /jwt/jsonInBlacklist:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"拉黑成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: jwt加入黑名单
+      tags:
+      - Jwt
+  /menu/addBaseMenu:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysBaseMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"添加成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 新增菜单
+      tags:
+      - Menu
+  /menu/addMenuAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AddMenuAuthorityInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"添加成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 增加menu和角色关联关系
+      tags:
+      - AuthorityMenu
+  /menu/deleteBaseMenu:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 菜单id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetById'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除菜单
+      tags:
+      - Menu
+  /menu/getBaseMenuById:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 菜单id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetById'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 根据id获取菜单
+      tags:
+      - Menu
+  /menu/getBaseMenuTree:
+    post:
+      parameters:
+      - description: 空
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取用户动态路由
+      tags:
+      - AuthorityMenu
+  /menu/getMenu:
+    post:
+      parameters:
+      - description: 空
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取用户动态路由
+      tags:
+      - AuthorityMenu
+  /menu/getMenuAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetAuthorityId'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取指定角色menu
+      tags:
+      - AuthorityMenu
+  /menu/getMenuList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PageInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取基础menu列表
+      tags:
+      - Menu
+  /menu/updateBaseMenu:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysBaseMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新菜单
+      tags:
+      - Menu
+  /user/changePassword:
+    post:
+      parameters:
+      - description: 用户名, 原密码, 新密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.ChangePasswordStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"修改成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用户修改密码
+      tags:
+      - SysUser
+  /user/deleteUser:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetById'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除用户
+      tags:
+      - SysUser
+  /user/getUserInfo:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取用户信息
+      tags:
+      - SysUser
+  /user/getUserList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PageInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取用户列表
+      tags:
+      - SysUser
+  /user/register:
+    post:
+      parameters:
+      - description: 用户名, 昵称, 密码, 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Register'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          schema:
+            type: string
+      summary: 用户注册账号
+      tags:
+      - SysUser
+  /user/setUserAuthorities:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户UUID, 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.SetUserAuthorities'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"修改成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 设置用户权限
+      tags:
+      - SysUser
+  /user/setUserAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户UUID, 角色ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.SetUserAuth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"修改成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更改用户权限
+      tags:
+      - SysUser
+  /user/setUserInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID, 用户名, 昵称, 头像链接
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"设置成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 设置用户信息
+      tags:
+      - SysUser
+swagger: "2.0"
