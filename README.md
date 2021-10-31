@@ -103,6 +103,9 @@ docs/
 
 > 需要注意把docs文件夹导入到代码中 `import "goweb-gin-demo/docs"`  
 
+- **如何获取到方法的注释呢?**  
+
+
 # 验证码获取及校验  
 首选通过`/base/captcha`获取验证码,其中包含验证码图片地址:`data:image/png;...`  
 ```
@@ -207,9 +210,124 @@ x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiOGU2MDBiN2YtMzI5Ny00OT
 x-user-id: 1
 ```  
 
+- **角色对应着菜单项和API接口**   
+
+通过userid获取权限id(`SELECT * FROM `sys_user_authority` WHERE `sys_user_authority`.`sys_user_id` = 1`)      
+```
++-------------+----------------------------+
+| sys_user_id | sys_authority_authority_id |
++-------------+----------------------------+
+|           1 | 888                        |   普通用户
+|           1 | 8881                       |   普通子用户
+|           1 | 9528                       |   测试用户
++-------------+----------------------------+
+```   
 
 
-## 使用[Casbin](https://github.com/casbin/casbin) 控制权限
+通过权限ID获取权限(`SELECT * FROM `sys_authorities` WHERE `sys_authorities`.`authority_id` IN ('888','8881','9528')`)  
+```
++---------------------+---------------------+------------+--------------+----------------+-----------+----------------+
+| created_at          | updated_at          | deleted_at | authority_id | authority_name | parent_id | default_router |
++---------------------+---------------------+------------+--------------+----------------+-----------+----------------+
+| 2021-10-25 14:53:31 | 2021-10-25 14:53:31 | NULL       | 888          | ????           | 0         | dashboard      |
+| 2021-10-25 14:53:31 | 2021-10-25 14:53:31 | NULL       | 8881         | ???????        | 888       | dashboard      |
+| 2021-10-25 14:53:31 | 2021-10-25 14:53:31 | NULL       | 9528         | ????           | 0         | dashboard      |
++---------------------+---------------------+------------+--------------+----------------+-----------+----------------+
+```             
+
+
+
+
+
+
+返回数据样本
+```
+{
+    "code":0,
+    "data":{
+        "menus":[
+            {
+                "ID":1,
+                "CreatedAt":"2021-10-25T14:53:31Z",
+                "UpdatedAt":"2021-10-25T14:53:31Z",
+                "parentId":"0",
+                "path":"dashboard",
+                "name":"dashboard",
+                "hidden":false,
+                "component":"view/dashboard/index.vue",
+                "sort":1,
+                "meta":{
+                    "keepAlive":false,
+                    "defaultMenu":false,
+                    "title":"仪表盘",
+                    "icon":"setting",
+                    "closeTab":false
+                },
+                "authoritys":null,
+                "menuId":"1",
+                "children":null,
+                "parameters":[
+
+                ]
+            },
+            {
+                "ID":3,
+                "CreatedAt":"2021-10-25T14:53:31Z",
+                "UpdatedAt":"2021-10-25T14:53:31Z",
+                "parentId":"0",
+                "path":"admin",
+                "name":"superAdmin",
+                "hidden":false,
+                "component":"view/superAdmin/index.vue",
+                "sort":3,
+                "meta":{
+                    "keepAlive":false,
+                    "defaultMenu":false,
+                    "title":"超级管理员",
+                    "icon":"user-solid",
+                    "closeTab":false
+                },
+                "authoritys":null,
+                "menuId":"3",
+                "children":[
+                    {
+                        "ID":4,
+                        "CreatedAt":"2021-10-25T14:53:31Z",
+                        "UpdatedAt":"2021-10-25T14:53:31Z",
+                        "parentId":"3",
+                        "path":"authority",
+                        "name":"authority",
+                        "hidden":false,
+                        "component":"view/superAdmin/authority/authority.vue",
+                        "sort":1,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"角色管理",
+                            "icon":"s-custom",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"4",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    }
+                ],
+                "parameters":[
+
+                ]
+            }
+        ]
+    },
+    "msg":"获取成功"
+}
+```
+
+
+
+## 使用[casbin](https://github.com/casbin/casbin) 控制权限
 Casbin is a powerful and efficient open-source access control library. It provides support for enforcing authorization based on various access control models.  
 
 可以 [在线](https://casbin.org/editor/) 书写规则:    
@@ -308,9 +426,11 @@ Sets the location for time.Time values (when using parseTime=true). "Local" sets
 > Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key
 >  [7.259ms] [rows:0] ALTER TABLE `casbin_rule` ADD `id` bigint unsigned AUTO_INCREMENT  
 
-断点调试gorm-adapter/v3@v3.4.4/adapter.go, 最后上网搜索发现版本问题。 把版本都降低了
-	github.com/casbin/casbin/v2 v2.11.0
-	github.com/casbin/gorm-adapter/v3 v3.0.2
+断点调试gorm-adapter/v3@v3.4.4/adapter.go, 最后上网搜索发现版本问题。 把版本都降低了  
+	github.com/casbin/casbin/v2 v2.11.0  
+	github.com/casbin/gorm-adapter/v3 v3.0.2  
+	
+
 	
 
   
