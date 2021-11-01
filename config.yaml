@@ -28,7 +28,7 @@ casbin:
 
 # system configuration
 system:
-  env: 'public'  # Change to "develop" to skip authentication for development mode
+  env: 'develop'  # Change to "develop" to skip authentication for development mode # public
   addr: 8888
   db-type: 'mysql'
   oss-type: 'local'    # 控制oss选择走本期还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
@@ -41,11 +41,10 @@ captcha:
   img-height: 80
 
 # mysql connect configuration
-# 未初始化之前请勿手动修改数据库信息！！！如果一定要手动初始化请看（https://www.github.com/flipped-aurora/gin-vue-admin/server.com/docs/first）
 mysql:
-  path: ''
+  path: '10.25.17.236:3306'
   config: 'parseTime=true'
-  db-name: 'gva'
+  db-name: 'weekly_report'
   username: 'root'
   password: 'root'
   max-idle-conns: 10

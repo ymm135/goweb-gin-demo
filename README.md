@@ -1,5 +1,5 @@
 # goweb-gin-demo
-go web脚手架
+go web脚手架, [数据库及表结构](./resource/sql/weekly_report.sql)  
 
 # [web框架gin](https://gin-gonic.com/zh-cn/docs/introduction/)
 ## 特性
@@ -75,6 +75,7 @@ func main() {
 
 # 通过Swagger测试接口
 [官方地址](https://github.com/swaggo) ,其中包含`swag`可执行程序和`gin-swagger`go web模块, [使用手册](https://github.com/swaggo/gin-swagger)  
+查看地址为: **http://IP:8888/swagger/index.html**  
 
 ```
 // @BasePath /api/v1
@@ -200,6 +201,18 @@ docs/
 }
 ```
 
+jwt token  
+<br>
+<div align=center>
+<img src="./resource/md_res/jwt.png" width="60%" height="60%" title="JWT Token"></img>
+</div>
+
+<br>
+**用户-角色权限-菜单项|API|资源对应关系图**   
+<br>
+   
+![](./resource/md_res/user-auth.jpg)  
+
 
 # 获取菜单项
 api接口`/api/menu/getMenu`  
@@ -235,11 +248,6 @@ x-user-id: 1
 +---------------------+---------------------+------------+--------------+----------------+-----------+----------------+
 ```             
 
-
-
-
-
-
 返回数据样本
 ```
 {
@@ -248,67 +256,212 @@ x-user-id: 1
         "menus":[
             {
                 "ID":1,
-                "CreatedAt":"2021-10-25T14:53:31Z",
-                "UpdatedAt":"2021-10-25T14:53:31Z",
+                "CreatedAt":"2021-11-01T11:14:12Z",
+                "UpdatedAt":"2021-11-01T11:14:14Z",
                 "parentId":"0",
-                "path":"dashboard",
-                "name":"dashboard",
+                "path":"",
+                "name":"周报",
                 "hidden":false,
-                "component":"view/dashboard/index.vue",
+                "component":"",
                 "sort":1,
                 "meta":{
                     "keepAlive":false,
                     "defaultMenu":false,
-                    "title":"仪表盘",
-                    "icon":"setting",
+                    "title":"周报",
+                    "icon":"",
                     "closeTab":false
                 },
                 "authoritys":null,
                 "menuId":"1",
-                "children":null,
+                "children":[
+                    {
+                        "ID":2,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"1",
+                        "path":"",
+                        "name":"查看周报",
+                        "hidden":false,
+                        "component":"",
+                        "sort":1,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"查看周报",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"2",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    },
+                    {
+                        "ID":3,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"1",
+                        "path":"",
+                        "name":"写周报",
+                        "hidden":false,
+                        "component":"",
+                        "sort":2,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"写周报",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"3",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    },
+                    {
+                        "ID":4,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"1",
+                        "path":"",
+                        "name":"统计导出",
+                        "hidden":false,
+                        "component":"",
+                        "sort":3,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"统计导出",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"4",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    },
+                    {
+                        "ID":5,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"1",
+                        "path":"",
+                        "name":"模板编辑",
+                        "hidden":false,
+                        "component":"",
+                        "sort":4,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"模板编辑",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"5",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    }
+                ],
                 "parameters":[
 
                 ]
             },
             {
-                "ID":3,
-                "CreatedAt":"2021-10-25T14:53:31Z",
-                "UpdatedAt":"2021-10-25T14:53:31Z",
+                "ID":6,
+                "CreatedAt":"2021-11-01T11:16:40Z",
+                "UpdatedAt":"2021-11-01T11:16:43Z",
                 "parentId":"0",
-                "path":"admin",
-                "name":"superAdmin",
+                "path":"",
+                "name":"设置",
                 "hidden":false,
-                "component":"view/superAdmin/index.vue",
-                "sort":3,
+                "component":"",
+                "sort":2,
                 "meta":{
                     "keepAlive":false,
                     "defaultMenu":false,
-                    "title":"超级管理员",
-                    "icon":"user-solid",
+                    "title":"设置",
+                    "icon":"",
                     "closeTab":false
                 },
                 "authoritys":null,
-                "menuId":"3",
+                "menuId":"6",
                 "children":[
                     {
-                        "ID":4,
-                        "CreatedAt":"2021-10-25T14:53:31Z",
-                        "UpdatedAt":"2021-10-25T14:53:31Z",
-                        "parentId":"3",
-                        "path":"authority",
-                        "name":"authority",
+                        "ID":7,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"6",
+                        "path":"",
+                        "name":"用户密码",
                         "hidden":false,
-                        "component":"view/superAdmin/authority/authority.vue",
+                        "component":"",
                         "sort":1,
                         "meta":{
                             "keepAlive":false,
                             "defaultMenu":false,
-                            "title":"角色管理",
-                            "icon":"s-custom",
+                            "title":"用户密码",
+                            "icon":"",
                             "closeTab":false
                         },
                         "authoritys":null,
-                        "menuId":"4",
+                        "menuId":"7",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    },
+                    {
+                        "ID":8,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"6",
+                        "path":"",
+                        "name":"统计规则",
+                        "hidden":false,
+                        "component":"",
+                        "sort":2,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"统计规则",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"8",
+                        "children":null,
+                        "parameters":[
+
+                        ]
+                    },
+                    {
+                        "ID":9,
+                        "CreatedAt":"2021-11-01T11:16:40Z",
+                        "UpdatedAt":"2021-11-01T11:16:43Z",
+                        "parentId":"6",
+                        "path":"",
+                        "name":"用户管理",
+                        "hidden":false,
+                        "component":"",
+                        "sort":3,
+                        "meta":{
+                            "keepAlive":false,
+                            "defaultMenu":false,
+                            "title":"用户管理",
+                            "icon":"",
+                            "closeTab":false
+                        },
+                        "authoritys":null,
+                        "menuId":"9",
                         "children":null,
                         "parameters":[
 
@@ -365,10 +518,7 @@ if ok == true {
 results, err := e.BatchEnforce([][]interface{}{{"alice", "data1", "read"}, {"bob", "data2", "write"}, {"jack", "data3", "read"}})
 ```
 
-
-
-
-
+f
 # 文件上传及下载  
 
 # 反射reflect 

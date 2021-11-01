@@ -22,7 +22,7 @@ func CasbinHandler() gin.HandlerFunc {
 		// 获取用户的角色
 		sub := waitUse.AuthorityId
 		e := casbinService.Casbin()
-		// 判断策略中是否存在
+		// 判断策略中是否存在, 查表匹配，比如: sub:100 ,obt:"/menu/getMenu", act:"Post"
 		success, _ := e.Enforce(sub, obj, act)
 		if global.GLOBAL_CONFIG.System.Env == "develop" || success {
 			c.Next()
