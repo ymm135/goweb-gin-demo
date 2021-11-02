@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 01/11/2021 17:25:45
+ Date: 02/11/2021 20:13:53
 */
 
 SET NAMES utf8mb4;
@@ -56,6 +56,77 @@ INSERT INTO `casbin_rule` VALUES ('p', '200', '/user/getUserInfo', 'GET', '', ''
 COMMIT;
 
 -- ----------------------------
+-- Table structure for file_chunks
+-- ----------------------------
+DROP TABLE IF EXISTS `file_chunks`;
+CREATE TABLE `file_chunks` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `exa_file_id` bigint(20) unsigned DEFAULT NULL,
+  `file_chunk_number` bigint(20) DEFAULT NULL,
+  `file_chunk_path` varchar(191) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_exa_file_chunks_deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of file_chunks
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for file_upload_and_downloads
+-- ----------------------------
+DROP TABLE IF EXISTS `file_upload_and_downloads`;
+CREATE TABLE `file_upload_and_downloads` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '文件名',
+  `url` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '文件地址',
+  `tag` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '文件标签',
+  `key` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '编号',
+  PRIMARY KEY (`id`),
+  KEY `idx_exa_file_upload_and_downloads_deleted_at` (`deleted_at`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of file_upload_and_downloads
+-- ----------------------------
+BEGIN;
+INSERT INTO `file_upload_and_downloads` VALUES (3, '2021-11-02 09:04:27', '2021-11-02 09:04:27', NULL, 'demo.c', '/Users/zero/Documents/uploads/file/fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c', 'c', 'fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c');
+INSERT INTO `file_upload_and_downloads` VALUES (4, '2021-11-02 12:10:17', '2021-11-02 12:10:17', NULL, 'mac-lan.png', '/Users/zero/Documents/uploads/file/2db0df442ea6d92d75657712a29e5604_20211102201017.png', 'png', '2db0df442ea6d92d75657712a29e5604_20211102201017.png');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for files
+-- ----------------------------
+DROP TABLE IF EXISTS `files`;
+CREATE TABLE `files` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `file_name` varchar(191) COLLATE utf8_bin DEFAULT NULL,
+  `file_md5` varchar(191) COLLATE utf8_bin DEFAULT NULL,
+  `file_path` varchar(191) COLLATE utf8_bin DEFAULT NULL,
+  `chunk_total` bigint(20) DEFAULT NULL,
+  `is_finish` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_exa_files_deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of files
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for jwt_blacklists
 -- ----------------------------
 DROP TABLE IF EXISTS `jwt_blacklists`;
@@ -67,7 +138,7 @@ CREATE TABLE `jwt_blacklists` (
   `jwt` text COLLATE utf8_bin COMMENT 'jwt',
   PRIMARY KEY (`id`),
   KEY `idx_jwt_blacklists_deleted_at` (`deleted_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of jwt_blacklists
@@ -130,6 +201,29 @@ INSERT INTO `sys_authority_menus` VALUES (9, '100');
 COMMIT;
 
 -- ----------------------------
+-- Table structure for sys_base_menu_parameters
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_base_menu_parameters`;
+CREATE TABLE `sys_base_menu_parameters` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `sys_base_menu_id` bigint(20) unsigned DEFAULT NULL,
+  `type` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '地址栏携带参数为params还是query',
+  `key` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '地址栏携带参数的key',
+  `value` varchar(191) COLLATE utf8_bin DEFAULT NULL COMMENT '地址栏携带参数的值',
+  PRIMARY KEY (`id`),
+  KEY `idx_sys_base_menu_parameters_deleted_at` (`deleted_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of sys_base_menu_parameters
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for sys_base_menus
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_base_menus`;
@@ -152,21 +246,21 @@ CREATE TABLE `sys_base_menus` (
   `close_tab` tinyint(1) DEFAULT NULL COMMENT '附加属性',
   PRIMARY KEY (`id`),
   KEY `idx_sys_base_menus_deleted_at` (`deleted_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of sys_base_menus
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_base_menus` VALUES (1, '2021-11-01 11:14:12', '2021-11-01 11:14:14', NULL, NULL, '0', NULL, '周报', NULL, NULL, 1, NULL, NULL, '周报', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (2, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', NULL, '查看周报', NULL, NULL, 1, NULL, NULL, '查看周报', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (3, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', NULL, '写周报', NULL, NULL, 2, NULL, NULL, '写周报', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (4, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', NULL, '统计导出', NULL, NULL, 3, NULL, NULL, '统计导出', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (5, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', NULL, '模板编辑', NULL, NULL, 4, NULL, NULL, '模板编辑', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (2, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', '/viewWeeklyReport', '查看周报', NULL, NULL, 1, NULL, NULL, '查看周报', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (3, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', '/writeWeeklyReport', '写周报', NULL, NULL, 2, NULL, NULL, '写周报', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (4, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', '/statisticalExport', '统计导出', NULL, NULL, 3, NULL, NULL, '统计导出', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (5, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '1', '/templateEditing', '模板编辑', NULL, NULL, 4, NULL, NULL, '模板编辑', NULL, NULL);
 INSERT INTO `sys_base_menus` VALUES (6, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '0', NULL, '设置', NULL, NULL, 2, NULL, NULL, '设置', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (7, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', NULL, '用户密码', NULL, NULL, 1, NULL, NULL, '用户密码', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (8, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', NULL, '统计规则', NULL, NULL, 2, NULL, NULL, '统计规则', NULL, NULL);
-INSERT INTO `sys_base_menus` VALUES (9, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', NULL, '用户管理', NULL, NULL, 3, NULL, NULL, '用户管理', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (7, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', '/userPassword', '用户密码', NULL, NULL, 1, NULL, NULL, '用户密码', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (8, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', '/statisticalRules', '统计规则', NULL, NULL, 2, NULL, NULL, '统计规则', NULL, NULL);
+INSERT INTO `sys_base_menus` VALUES (9, '2021-11-01 11:16:40', '2021-11-01 11:16:43', NULL, NULL, '6', '/userManagement', '用户管理', NULL, NULL, 3, NULL, NULL, '用户管理', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -213,7 +307,7 @@ CREATE TABLE `sys_users` (
 -- Records of sys_users
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_users` VALUES (1, '2021-11-01 14:53:31', '2021-11-01 14:53:31', NULL, '8e600b7f-3297-4979-a445-d218205ef9a6', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '超级管理员', 'dark', '', '#fff', '#1890ff', '100');
+INSERT INTO `sys_users` VALUES (1, '2021-11-01 14:53:31', '2021-11-02 10:30:56', NULL, '8e600b7f-3297-4979-a445-d218205ef9a6', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '超级管理员', 'dark', '', '#fff', '#1890ff', '100');
 INSERT INTO `sys_users` VALUES (2, '2021-11-01 14:53:31', '2021-11-01 14:53:31', NULL, '9d9ab82d-81a7-433b-9ea1-bde1c4f1b990', 'user', 'e10adc3949ba59abbe56e057f20f883e', '普通用户', 'dark', '', '#fff', '#1890ff', '200');
 COMMIT;
 
