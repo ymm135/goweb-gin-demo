@@ -38,3 +38,12 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:12:49.860	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:43	router register success
 [github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:12:49.861	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
 [github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:13:19.271	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:30:05.640	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:43	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:30:05.644	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:30:05.644	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	net.Listen error: listen tcp :8888: bind: address already in use
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:30:24.169	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:43	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:30:24.170	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:56:07.799	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:57:34.874	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:43	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:57:34.877	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2021/11/01 - 18:57:55.922	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection

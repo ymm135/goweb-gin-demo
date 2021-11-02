@@ -518,7 +518,7 @@ if ok == true {
 results, err := e.BatchEnforce([][]interface{}{{"alice", "data1", "read"}, {"bob", "data2", "write"}, {"jack", "data3", "read"}})
 ```
 
-f
+
 # 文件上传及下载  
 
 # 反射reflect 
@@ -547,6 +547,10 @@ func (t *T) Do(a int, b string) {
     fmt.Println("hello" + b, a)
 }
 ``` 
+
+# GoWeb 发布
+go build编译出moduleName的可执行文件，加载配置文件config.yaml即可运行。    
+
 
 # 疑问及拓展
 #### 为什么函数或方法中变量名很多都是大写字母开始的?

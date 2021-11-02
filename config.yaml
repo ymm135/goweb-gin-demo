@@ -8,7 +8,7 @@ jwt:
 zap:
   level: 'info'
   format: 'console'
-  prefix: '[github.com/flipped-aurora/gin-vue-admin/server]'
+  prefix: '[goweb-demo]'
   director: 'log'
   link-name: 'latest_log'
   show-line: true

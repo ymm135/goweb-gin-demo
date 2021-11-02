@@ -7,6 +7,7 @@ type ServiceGroup struct {
 	OperationRecordService
 	MenuService
 	BaseMenuService
+	SystemConfigService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

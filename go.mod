@@ -18,6 +18,7 @@ require (
 	github.com/mojocn/base64Captcha v1.3.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
+	github.com/shirou/gopsutil v3.20.11+incompatible
 	github.com/songzhibin97/gkit v1.1.1
 	github.com/spf13/viper v1.7.0
 	github.com/stretchr/testify v1.7.0
