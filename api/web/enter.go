@@ -8,6 +8,8 @@ type ApiGroup struct {
 	BaseApi
 	JwtApi
 	AuthorityMenuApi
+	FileUploadAndDownloadApi
+	SystemApi
 }
 
 var userService = service.ServiceGroupApp.UserService
@@ -15,4 +17,5 @@ var jwtService =  service.ServiceGroupApp.JwtService
 var menuService = service.ServiceGroupApp.MenuService
 var baseMenuService = service.ServiceGroupApp.BaseMenuService
 var systemConfigService = service.ServiceGroupApp.SystemConfigService
+var fileUploadAndDownloadService = service.ServiceGroupApp.FileUploadAndDownloadService
 

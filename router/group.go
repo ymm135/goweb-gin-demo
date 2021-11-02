@@ -7,6 +7,8 @@ type RouterGroup struct {
 	web.JwtRouter
 	web.UserRouter
 	web.MenuRouter
+	web.SysRouter
+	web.FileUploadAndDownloadRouter
 }
 
 var RouterGroupApp = new(RouterGroup)

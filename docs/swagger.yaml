@@ -391,6 +391,30 @@ definitions:
       id:
         type: integer
     type: object
+  web.FileUploadAndDownload:
+    properties:
+      createdAt:
+        description: 创建时间
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      key:
+        description: 编号
+        type: string
+      name:
+        description: 文件名
+        type: string
+      tag:
+        description: 文件标签
+        type: string
+      updatedAt:
+        description: 更新时间
+        type: string
+      url:
+        description: 文件地址
+        type: string
+    type: object
   web.SysAuthority:
     properties:
       authorityId:
@@ -591,6 +615,182 @@ paths:
       summary: 用户登录
       tags:
       - Base
+  /fileUploadAndDownload/breakpointContinue:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: an example for breakpoint resume, 断点续传示例
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"切片创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 断点续传到服务器
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/breakpointContinueFinish:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 上传文件完成
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"file uploaded, 文件创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建文件
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/deleteFile:
+    post:
+      parameters:
+      - description: 传入文件里面id即可
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.FileUploadAndDownload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除文件
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/download:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 待下载的文件名
+        in: query
+        name: fileName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"文件下载成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 文件下载
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/findFile:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: Find the file, 查找文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查找成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 查找文件
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/getFileList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PageInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页文件列表
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/removeChunk:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 删除缓存切片
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"缓存切片删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除切片
+      tags:
+      - FileUploadAndDownload
+  /fileUploadAndDownload/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 上传文件示例
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"上传成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 上传文件示例
+      tags:
+      - FileUploadAndDownload
   /jwt/jsonInBlacklist:
     post:
       consumes:

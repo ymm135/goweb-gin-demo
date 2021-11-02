@@ -2,7 +2,7 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "goweb-gin-demo/api"
+	"goweb-gin-demo/api"
 	"goweb-gin-demo/middleware"
 )
 
@@ -12,7 +12,7 @@ type MenuRouter struct {
 func (s *MenuRouter) InitMenuRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 	menuRouter := Router.Group("menu").Use(middleware.OperationRecord())
 	menuRouterWithoutRecord := Router.Group("menu")
-	var authorityMenuApi = v1.ApiGroupApp.ApiGroup.AuthorityMenuApi
+	var authorityMenuApi = api.ApiGroupApp.ApiGroup.AuthorityMenuApi
 	{
 		menuRouter.POST("addBaseMenu", authorityMenuApi.AddBaseMenu)           // 新增菜单
 		menuRouter.POST("addMenuAuthority", authorityMenuApi.AddMenuAuthority) //	增加menu和角色关联关系

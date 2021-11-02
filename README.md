@@ -3,28 +3,28 @@ go web脚手架, [数据库及表结构](./resource/sql/weekly_report.sql)
 
 # [web框架gin](https://gin-gonic.com/zh-cn/docs/introduction/)
 ## 特性
-#### 快速
+- 快速
 基于 Radix 树的路由，小内存占用。没有反射。可预测的 API 性能。
 
-#### 支持中间件
+- 支持中间件
 传入的 HTTP 请求可以由一系列中间件和最终操作来处理。 例如：Logger，Authorization，GZIP，最终操作 DB。
 
-#### Crash 处理
+- Crash 处理
 Gin 可以 catch 一个发生在 HTTP 请求中的 panic 并 recover 它。这样，你的服务器将始终可用。例如，你可以向 Sentry 报告这个 panic！
 
-#### JSON 验证
+- JSON 验证
 Gin 可以解析并验证请求的 JSON，例如检查所需值的存在。
 
-#### 路由组
+- 路由组
 更好地组织路由。是否需要授权，不同的 API 版本…… 此外，这些组可以无限制地嵌套而不会降低性能。
 
-#### 错误管理
+- 错误管理
 Gin 提供了一种方便的方法来收集 HTTP 请求期间发生的所有错误。最终，中间件可以将它们写入日志文件，数据库并通过网络发送。
 
-#### 内置渲染
+- 内置渲染
 Gin 为 JSON，XML 和 HTML 渲染提供了易于使用的 API。
 
-#### 可扩展性
+- 可扩展性
 新建一个中间件非常简单，去查看 [示例代码](https://gin-gonic.com/zh-cn/docs/examples/) 吧。
 
 ## 服务创建及启动
@@ -72,8 +72,153 @@ func main() {
 }
 ```
 
+# [gorm](https://gorm.io/zh_CN/docs/index.html)   
+## 概述
+- 全功能 ORM
+- 关联 (Has One，Has Many，Belongs To，Many To Many，多态，单表继承)属于、多对多、多态、单表继承）
+- Create，Save，Update，Delete，Find 中钩子方法保存/更新/删除/查找）
+- 支持 Preload、Joins 的预加载，Joins
+- 事务，嵌套事务，Save Point，Rollback To Saved Point、回滚到保存点
+- Context、预编译模式、DryRun 模式DryRun 模式
+- 批量插入，FindInBatches，Find/Create with Map，使用 SQL 表达式、Context Valuer 进行 CRUDBatches、使用 Map 查找/创建、使用 SQL Expr 和 Context Valuer 进行 CRUD
+- SQL 构建器，Upsert，数据库锁，Optimizer/Index/Comment Hint，命名参数，子查询、Upsert、锁定、优化器/索引/注释提示、命名参数、子查询
+- 复合主键，索引，约束
+- Auto Migration
+- 自定义 Logger
+- 灵活的可扩展插件 API：Database Resolver（多数据库，读写分离）、Prometheus…PI：数据库解析器（多个数据库，读/写拆分）/ Prometheus...
+- 每个特性都经过了测试的重重考验
+- 开发者友好
+  
+## 模型定义 
+```
+type User struct {
+  ID           uint
+  Name         string
+  Email        *string
+  Age          uint8
+  Birthday     *time.Time
+  MemberNumber sql.NullString
+  ActivatedAt  sql.NullTime
+  CreatedAt    time.Time
+  UpdatedAt    time.Time
+}
+```
 
-# 通过Swagger测试接口
+GORM 使用结构体名的 蛇形命名 作为表名。对于结构体 User，根据约定，其表名为 users  
+您可以实现 Tabler 接口来更改默认表名，例如：  
+```
+type Tabler interface {
+    TableName() string
+}
+
+// TableName 会将 User 的表名重写为 `profiles`
+func (User) TableName() string {
+  return "profiles"
+}
+```
+
+您可以使用 Table 方法临时指定表名，例如：
+```
+// 根据 User 的字段创建 `deleted_users` 表
+db.Table("deleted_users").AutoMigrate(&User{})
+
+// 从另一张表查询数据
+var deletedUsers []User
+db.Table("deleted_users").Find(&deletedUsers)
+// SELECT * FROM deleted_users;
+
+db.Table("deleted_users").Where("name = ?", "jinzhu").Delete(&User{})
+// DELETE FROM deleted_users WHERE name = 'jinzhu';
+```
+
+## 连接数据库  
+```
+import (
+  "gorm.io/driver/mysql"
+  "gorm.io/gorm"
+)
+
+func main() {
+  // 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
+  dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+  db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+}
+```
+
+### 连接池
+GORM 使用 database/sql 维护连接池
+```
+sqlDB, err := db.DB()
+
+// SetMaxIdleConns 设置空闲连接池中连接的最大数量
+sqlDB.SetMaxIdleConns(10)
+
+// SetMaxOpenConns 设置打开数据库连接的最大数量。
+sqlDB.SetMaxOpenConns(100)
+
+// SetConnMaxLifetime 设置了连接可复用的最大时间。
+sqlDB.SetConnMaxLifetime(time.Hour)
+```
+
+## CRUD 
+### 基本操作
+```
+#  创建记录
+user := User{Name: "Jinzhu", Age: 18, Birthday: time.Now()}
+
+result := db.Create(&user) // 通过数据的指针来创建
+
+user.ID             // 返回插入数据的主键
+result.Error        // 返回 error
+result.RowsAffected // 返回插入记录的条数
+----------------------------------------------------------------------
+
+#  查询
+// 获取第一条记录（主键升序）
+db.First(&user)
+// SELECT * FROM users ORDER BY id LIMIT 1;
+
+// 获取一条记录，没有指定排序字段
+db.Take(&user)
+// SELECT * FROM users LIMIT 1;
+
+// 获取最后一条记录（主键降序）
+db.Last(&user)
+// SELECT * FROM users ORDER BY id DESC LIMIT 1;
+----------------------------------------------------------------------
+
+#  更新
+user.Name = "jinzhu 2"
+user.Age = 100
+db.Save(&user)
+// UPDATE users SET name='jinzhu 2', age=100, birthday='2016-01-01', updated_at = '2013-11-17 21:34:10' WHERE id=111
+----------------------------------------------------------------------
+
+# 删除
+// Email 的 ID 是 `10`
+db.Delete(&email)
+// DELETE from emails where id = 10;
+
+// 带额外条件的删除
+db.Where("name = ?", "jinzhu").Delete(&email)
+// DELETE from emails where id = 10 AND name = "jinzhu";
+----------------------------------------------------------------------
+```
+### 创建钩子  
+GORM 允许用户定义的钩子有 BeforeSave, BeforeCreate, AfterSave, AfterCreate 创建记录时将调用这些钩子方法，请参考 Hooks 中关于生命周期的详细信息
+```
+func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
+  u.UUID = uuid.New()
+
+    if u.Role == "admin" {
+        return errors.New("invalid role")
+    }
+    return
+}
+```
+
+
+# 通过Swagger测试接口, [中文文档](https://github.com/swaggo/swag/blob/master/README_zh-CN.md)  
 [官方地址](https://github.com/swaggo) ,其中包含`swag`可执行程序和`gin-swagger`go web模块, [使用手册](https://github.com/swaggo/gin-swagger)  
 查看地址为: **http://IP:8888/swagger/index.html**  
 
@@ -211,7 +356,7 @@ jwt token
 **用户-角色权限-菜单项|API|资源对应关系图**   
 <br>
    
-![](./resource/md_res/user-auth.jpg)  
+![用户授权](./resource/md_res/user-auth.jpg)  
 
 
 # 获取菜单项
@@ -480,7 +625,7 @@ x-user-id: 1
 
 
 
-## 使用[casbin](https://github.com/casbin/casbin) 控制权限
+# 使用[casbin](https://github.com/casbin/casbin) 控制权限
 Casbin is a powerful and efficient open-source access control library. It provides support for enforcing authorization based on various access control models.  
 
 可以 [在线](https://casbin.org/editor/) 书写规则:    
@@ -520,6 +665,37 @@ results, err := e.BatchEnforce([][]interface{}{{"alice", "data1", "read"}, {"bob
 
 
 # 文件上传及下载  
+
+文件上传成功返回:  
+```
+{
+    "code": 0,
+    "data": {
+        "file": {
+            "ID": 0,
+            "CreatedAt": "0001-01-01T00:00:00Z",
+            "UpdatedAt": "0001-01-01T00:00:00Z",
+            "name": "demo.c",
+            "url": "/Users/zero/Documents/uploads/file/fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c",
+            "tag": "c",
+            "key": "fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c"
+        }
+    },
+    "msg": "上传成功"
+}
+```
+
+数据库信息:  
+```
+mysql> select * from file_upload_and_downloads;
++----+---------------------+---------------------+------------+--------+--------------------------------------------------------------------------------------+------+---------------------------------------------------+
+| id | created_at          | updated_at          | deleted_at | name   | url                                                                                  | tag  | key                                               |
++----+---------------------+---------------------+------------+--------+--------------------------------------------------------------------------------------+------+---------------------------------------------------+
+|  3 | 2021-11-02 09:04:27 | 2021-11-02 09:04:27 | NULL       | demo.c | /Users/zero/Documents/uploads/file/fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c | c    | fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.c |
++----+---------------------+---------------------+------------+--------+--------------------------------------------------------------------------------------+------+---------------------------------------------------+
+```
+
+
 
 # 反射reflect 
 [官方文档](https://pkg.go.dev/reflect)  
@@ -583,6 +759,20 @@ Sets the location for time.Time values (when using parseTime=true). "Local" sets
 断点调试gorm-adapter/v3@v3.4.4/adapter.go, 最后上网搜索发现版本问题。 把版本都降低了  
 	github.com/casbin/casbin/v2 v2.11.0  
 	github.com/casbin/gorm-adapter/v3 v3.0.2  
+	
+
+#### 查看http请求详情
+
+通过查看gin.Context>>Request>>(Body io.ReadCloser)>>src>>R>>buf=>点击view就能看到http详情。  
+
+<br>
+<div align=center>
+<img src="./resource/md_res/gin-http-res.jpg" width="70%" height="70%" title="Go Http请求"></img>
+</div>
+<br>  
+
+
+
 	
 
 	

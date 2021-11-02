@@ -22,6 +22,7 @@ redis:
   addr: '127.0.0.1:6379'
   password: ''
 
+
 # casbin configuration
 casbin:
   model-path: './resource/rbac_model.conf'
@@ -29,7 +30,7 @@ casbin:
 # system configuration
 system:
   env: 'develop'  # Change to "develop" to skip authentication for development mode # public
-  addr: 8888
+  addr: 8889
   db-type: 'mysql'
   oss-type: 'local'    # 控制oss选择走本期还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
   use-multipoint: false
@@ -51,6 +52,10 @@ mysql:
   max-open-conns: 100
   log-mode: false
   log-zap: false
+
+# 本地下载文件路径
+local:
+  path: '/Users/zero/Documents/uploads/file'
 
 # timer task db clear table
 Timer:

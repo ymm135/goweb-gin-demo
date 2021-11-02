@@ -8,6 +8,7 @@ type ServiceGroup struct {
 	MenuService
 	BaseMenuService
 	SystemConfigService
+	FileUploadAndDownloadService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

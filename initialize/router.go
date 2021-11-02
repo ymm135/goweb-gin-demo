@@ -38,6 +38,8 @@ func Routers() *gin.Engine {
 		RouterGroup.InitJwtRouter(PrivateGroup)
 		RouterGroup.InitUserRouter(PrivateGroup)
 		RouterGroup.InitMenuRouter(PrivateGroup)
+		RouterGroup.InitSystemRouter(PrivateGroup)
+		RouterGroup.InitFileUploadAndDownloadRouter(PrivateGroup)
 	}
 
 	global.GLOBAL_LOG.Info("router register success")

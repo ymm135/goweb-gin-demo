@@ -2,7 +2,7 @@ package web
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "goweb-gin-demo/api"
+	"goweb-gin-demo/api"
 	"goweb-gin-demo/middleware"
 )
 
@@ -12,7 +12,7 @@ type UserRouter struct {
 func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 	userRouter := Router.Group("user").Use(middleware.OperationRecord())
 	userRouterWithoutRecord := Router.Group("user")
-	var baseApi = v1.ApiGroupApp.ApiGroup.BaseApi
+	var baseApi = api.ApiGroupApp.ApiGroup.BaseApi
 	{
 		userRouter.POST("register", baseApi.Register)                     // 用户注册账号
 		userRouter.POST("changePassword", baseApi.ChangePassword)         // 用户修改密码

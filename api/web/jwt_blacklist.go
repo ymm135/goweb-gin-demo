@@ -1,11 +1,11 @@
 package web
 
 import (
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/response"
 	"goweb-gin-demo/model/web"
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 type JwtApi struct {
