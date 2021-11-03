@@ -72,3 +72,4 @@
 [goweb-demo]2021/11/02 - 20:09:04.558	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:45	router register success
 [goweb-demo]2021/11/02 - 20:09:04.562	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
 [goweb-demo]2021/11/02 - 20:09:44.609	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/web/file_upload_download.go:59	文件未找到!	{"err": "record not found"}
+[goweb-demo]2021/11/02 - 20:32:40.623	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection

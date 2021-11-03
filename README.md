@@ -1,7 +1,35 @@
+# 目录
+- [goweb-gin-demo](#goweb-gin-demo)
+- [web框架gin](#web框架gin)
+	- [特性](#特性)
+	- [服务创建及启动](#服务创建及启动)
+- [gorm](#gorm)
+	- [概述](#概述)
+	- [模型定义](#模型定义)
+	- [连接数据库](#连接数据库)
+		- [连接池](#连接池)
+	- [CRUD](#crud)
+		- [基本操作](#基本操作)
+		- [创建钩子](#创建钩子)
+- [通过Swagger测试接口, 中文文档](#通过swagger测试接口-中文文档)
+- [验证码获取及校验](#验证码获取及校验)
+- [获取菜单项](#获取菜单项)
+- [使用casbin 控制权限](#使用casbin-控制权限)
+- [文件上传及下载](#文件上传及下载)
+- [代码自动生成](#代码自动生成)
+- [反射reflect](#反射reflect)
+- [GoWeb 发布](#goweb-发布)
+- [疑问及拓展](#疑问及拓展)
+			- [为什么函数或方法中变量名很多都是大写字母开始的?](#为什么函数或方法中变量名很多都是大写字母开始的)
+			- [unsupported Scan, storing driver.Value type []uint8 into type *time.Time](#unsupported-scan-storing-drivervalue-type-uint8-into-type-timetime)
+			- [Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key](#error-1075-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key)
+			- [查看http请求详情](#查看http请求详情)
+  
 # goweb-gin-demo
 go web脚手架, [数据库及表结构](./resource/sql/weekly_report.sql)  
 
-# [web框架gin](https://gin-gonic.com/zh-cn/docs/introduction/)
+# [web框架gin](https://gin-gonic.com/zh-cn/docs/introduction/) 
+[中文参考文档](https://www.kancloud.cn/shuangdeyu/gin_book/949411) 
 ## 特性
 - 快速
 基于 Radix 树的路由，小内存占用。没有反射。可预测的 API 性能。
@@ -666,6 +694,57 @@ results, err := e.BatchEnforce([][]interface{}{{"alice", "data1", "read"}, {"bob
 
 # 文件上传及下载  
 
+文件上传及下载code
+```
+func main() {
+	router := gin.Default()
+	// 给表单限制上传大小 (默认 32 MiB)
+	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
+	router.POST("/upload", func(c *gin.Context) {
+		// 单文件
+		file, _ := c.FormFile("file")
+		log.Println(file.Filename)
+
+		// 上传文件到指定的路径
+		// c.SaveUploadedFile(file, dst)
+
+		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+	})
+	router.Run(":8080")
+}
+```
+
+```
+// @Tags FileUploadAndDownload
+// @Summary 文件下载
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param fileName query string true "待下载的文件名"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"文件下载成功"}"
+// @Router /fileUploadAndDownload/download [get]
+func (u *FileUploadAndDownloadApi) DownloadFile(c *gin.Context) {
+	fileName := c.Query("fileName")
+
+	//待下载的文件是存储本地的,如果存储在云盘，直接访问链接即可
+	//如果没有记录，也会报错，record not found
+	err, fileInfo := fileUploadAndDownloadService.FindFile(fileName)
+
+	if err != nil {
+		global.GLOBAL_LOG.Error("文件未找到!", zap.Any("err", err))
+		c.Redirect(http.StatusFound, "/404")
+		return
+	}
+
+	c.Header("Content-Type", "application/octet-stream")
+	c.Header("Content-Disposition", "attachment; filename="+fileInfo.Name)
+	c.Header("Content-Transfer-Encoding", "binary")
+
+	c.File(fileInfo.Url)
+	return
+}
+```
+
 文件上传成功返回:  
 ```
 {
@@ -695,7 +774,22 @@ mysql> select * from file_upload_and_downloads;
 +----+---------------------+---------------------+------------+--------+--------------------------------------------------------------------------------------+------+---------------------------------------------------+
 ```
 
-
+# 代码自动生成
+gin-vue-admin提供代码自动生成功能，选择数据库表结构，可直接生成前端代码及后端代码，很方便  
+比如周报的表结构如下:  
+```
+{
+    "header":"周报",
+    "contents":[
+        {"title":"", "content":""},
+        {"title":"", "content":""}
+    ],
+    "attachments":[
+         {"pic":"fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.png"},
+         {"file":"2db0df442ea6d92d75657712a29e5604_20211102201017.txt"}
+    ]
+}
+```
 
 # 反射reflect 
 [官方文档](https://pkg.go.dev/reflect)  
@@ -729,9 +823,10 @@ go build编译出moduleName的可执行文件，加载配置文件config.yaml即
 
 
 # 疑问及拓展
-#### 为什么函数或方法中变量名很多都是大写字母开始的?
+#### 为什么函数或方法中变量名很多都是大写字母开始的?  
 - 任何需要对外暴露的名字必须以大写字母开头，不需要对外暴露的则应该以小写字母开头。     
 但是gin-vue-admin代码中有很多大小，连方法参数都是大写字母开始的?  
+
 ```
 # 函数中的变量Router
 Router := initialize.Routers()
@@ -740,7 +835,7 @@ Router := initialize.Routers()
 func (s *BaseRouter) InitBaseRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 ```
 
-#### unsupported Scan, storing driver.Value type []uint8 into type *time.Time
+#### unsupported Scan, storing driver.Value type []uint8 into type *time.Time  
 需要在连接数据库时增加参数: 
 ```
 db, err := sqlx.Connect("mysql", "myuser:mypass@tcp(127.0.0.1:3306)/mydb?parseTime=true") 
