@@ -1,7 +1,7 @@
 # 目录
 - [goweb-gin-demo](#goweb-gin-demo)
 - [web框架gin](#web框架gin)
-	- [特性](#特性)
+    - [特性](#特性)
 	- [服务创建及启动](#服务创建及启动)
 - [gorm](#gorm)
 	- [概述](#概述)
@@ -20,10 +20,10 @@
 - [反射reflect](#反射reflect)
 - [GoWeb 发布](#goweb-发布)
 - [疑问及拓展](#疑问及拓展)
-			- [为什么函数或方法中变量名很多都是大写字母开始的?](#为什么函数或方法中变量名很多都是大写字母开始的)
-			- [unsupported Scan, storing driver.Value type []uint8 into type *time.Time](#unsupported-scan-storing-drivervalue-type-uint8-into-type-timetime)
-			- [Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key](#error-1075-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key)
-			- [查看http请求详情](#查看http请求详情)
+    - [为什么函数或方法中变量名很多都是大写字母开始的?](#为什么函数或方法中变量名很多都是大写字母开始的)
+    - [unsupported Scan, storing driver.Value type []uint8 into type *time.Time](#unsupported-scan-storing-drivervalue-type-uint8-into-type-timetime)
+    - [Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key](#error-1075-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key)
+    - [查看http请求详情](#查看http请求详情)
   
 # goweb-gin-demo
 go web脚手架, [数据库及表结构](./resource/sql/weekly_report.sql)  
