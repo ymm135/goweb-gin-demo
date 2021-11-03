@@ -23,6 +23,234 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/authority/copyAuthority": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "拷贝角色",
+                "parameters": [
+                    {
+                        "description": "旧角色id, 新权限id, 新权限名, 新父角色id",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/response.SysAuthorityCopyResponse"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"拷贝成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/authority/createAuthority": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "创建角色",
+                "parameters": [
+                    {
+                        "description": "权限id, 权限名, 父角色id",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/web.SysAuthority"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"创建成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/authority/deleteAuthority": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "删除角色",
+                "parameters": [
+                    {
+                        "description": "删除角色",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/web.SysAuthority"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/authority/getAuthorityList": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "分页获取角色列表",
+                "parameters": [
+                    {
+                        "description": "页码, 每页大小",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.PageInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/authority/setDataAuthority": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "设置角色资源权限",
+                "parameters": [
+                    {
+                        "description": "设置角色资源权限",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/web.SysAuthority"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"设置成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/authority/updateAuthority": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Authority"
+                ],
+                "summary": "更新角色信息",
+                "parameters": [
+                    {
+                        "description": "权限id, 权限名, 父角色id",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/web.SysAuthority"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/base/captcha": {
             "post": {
                 "security": [
@@ -349,7 +577,7 @@ var doc = `{
                 "tags": [
                     "FileUploadAndDownload"
                 ],
-                "summary": "上传文件示例",
+                "summary": "上传文件",
                 "parameters": [
                     {
                         "type": "file",
@@ -1102,12 +1330,12 @@ var doc = `{
                 "summary": "设置用户信息",
                 "parameters": [
                     {
-                        "description": "ID, 用户名, 昵称, 头像链接",
+                        "description": "ID, 用户名, 昵称, 密码",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysUser"
+                            "$ref": "#/definitions/web.SysSimpleUser"
                         }
                     }
                 ],
@@ -1142,50 +1370,6 @@ var doc = `{
                     "type": "string"
                 },
                 "endpoint": {
-                    "type": "string"
-                }
-            }
-        },
-        "config.Autocode": {
-            "type": "object",
-            "properties": {
-                "root": {
-                    "type": "string"
-                },
-                "server": {
-                    "type": "string"
-                },
-                "serverApi": {
-                    "type": "string"
-                },
-                "serverInitialize": {
-                    "type": "string"
-                },
-                "serverModel": {
-                    "type": "string"
-                },
-                "serverRequest": {
-                    "type": "string"
-                },
-                "serverRouter": {
-                    "type": "string"
-                },
-                "serverService": {
-                    "type": "string"
-                },
-                "transferRestart": {
-                    "type": "boolean"
-                },
-                "web": {
-                    "type": "string"
-                },
-                "webApi": {
-                    "type": "string"
-                },
-                "webForm": {
-                    "type": "string"
-                },
-                "webTable": {
                     "type": "string"
                 }
             }
@@ -1396,10 +1580,6 @@ var doc = `{
             "properties": {
                 "aliyunOSS": {
                     "$ref": "#/definitions/config.AliyunOSS"
-                },
-                "autoCode": {
-                    "description": "auto",
-                    "$ref": "#/definitions/config.Autocode"
                 },
                 "captcha": {
                     "$ref": "#/definitions/config.Captcha"
@@ -1689,6 +1869,18 @@ var doc = `{
                 }
             }
         },
+        "response.SysAuthorityCopyResponse": {
+            "type": "object",
+            "properties": {
+                "authority": {
+                    "$ref": "#/definitions/web.SysAuthority"
+                },
+                "oldAuthorityId": {
+                    "description": "旧角色ID",
+                    "type": "string"
+                }
+            }
+        },
         "web.FileUploadAndDownload": {
             "type": "object",
             "properties": {
@@ -1883,36 +2075,15 @@ var doc = `{
                 }
             }
         },
-        "web.SysUser": {
+        "web.SysSimpleUser": {
             "type": "object",
             "properties": {
-                "activeColor": {
-                    "description": "活跃颜色",
-                    "type": "string"
-                },
-                "authorities": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/web.SysAuthority"
-                    }
-                },
-                "authority": {
-                    "$ref": "#/definitions/web.SysAuthority"
-                },
                 "authorityId": {
                     "description": "用户角色ID",
                     "type": "string"
                 },
-                "baseColor": {
-                    "description": "基础颜色",
-                    "type": "string"
-                },
                 "createdAt": {
                     "description": "创建时间",
-                    "type": "string"
-                },
-                "headerImg": {
-                    "description": "用户头像",
                     "type": "string"
                 },
                 "id": {
@@ -1923,8 +2094,8 @@ var doc = `{
                     "description": "用户昵称",
                     "type": "string"
                 },
-                "sideMode": {
-                    "description": "用户侧边主题",
+                "password": {
+                    "description": "用户登录密码",
                     "type": "string"
                 },
                 "updatedAt": {
@@ -1933,10 +2104,6 @@ var doc = `{
                 },
                 "userName": {
                     "description": "用户登录名",
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "用户UUID",
                     "type": "string"
                 }
             }

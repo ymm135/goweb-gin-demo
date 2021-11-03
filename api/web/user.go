@@ -275,12 +275,29 @@ func (b *BaseApi) DeleteUser(c *gin.Context) {
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body web.SysUser true "ID, 用户名, 昵称, 头像链接"
+// @Param data body web.SysSimpleUser true "ID, 用户名, 昵称, 密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"设置成功"}"
 // @Router /user/setUserInfo [put]
 func (b *BaseApi) SetUserInfo(c *gin.Context) {
 	var user web.SysUser
 	_ = c.ShouldBindJSON(&user)
+
+	//TODO 为了周报数据需要转换一下,也更改了请求参数: @Param data body web.User true  "ID, 用户名, 昵称, 头像"
+	{
+		//如果password不为空,那就加密
+		if len(user.Password) != 0 {
+			user.Password = utils.MD5V([]byte(user.Password))
+		}
+
+		//修改用户权限
+		if len(user.AuthorityId) != 0 {
+			var sua systemReq.SetUserAuthorities
+			sua.ID = user.ID
+			sua.AuthorityIds = []string{ user.AuthorityId }
+			userService.SetUserAuthorities(sua.ID, sua.AuthorityIds)
+		}
+	}
+
 	if err := utils.Verify(user, utils.IdVerify); err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

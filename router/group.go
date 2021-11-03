@@ -9,6 +9,7 @@ type RouterGroup struct {
 	web.MenuRouter
 	web.SysRouter
 	web.FileUploadAndDownloadRouter
+	web.AuthorityRouter
 }
 
 var RouterGroupApp = new(RouterGroup)

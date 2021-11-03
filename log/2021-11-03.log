@@ -1,0 +1,49 @@
+[goweb-demo]2021/11/03 - 12:54:17.391	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 12:54:17.392	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 12:54:17.392	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	net.Listen error: listen tcp :8889: bind: address already in use
+[goweb-demo]2021/11/03 - 12:54:38.461	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 12:54:38.462	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 14:47:10.900	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 14:47:22.780	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 14:47:22.781	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 14:54:38.403	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 14:57:43.214	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 14:57:43.218	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:03:25.583	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 15:03:52.271	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 15:04:09.569	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 15:04:09.570	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:05:22.072	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 15:05:22.074	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:05:25.814	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 15:07:33.609	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 15:07:33.611	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:46:37.109	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 15:46:37.113	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:47:01.057	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 15:47:07.734	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 15:47:07.739	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 15:52:33.286	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 16:02:44.760	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 16:10:57.625	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:10:57.628	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 16:11:28.621	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 16:12:05.420	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 16:12:16.268	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:12:16.269	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 16:16:08.097	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 16:17:14.648	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:17:14.650	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 16:17:14.663	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:17:14.664	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 16:17:14.665	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	net.Listen error: listen tcp :8889: bind: address already in use
+[goweb-demo]2021/11/03 - 16:17:30.103	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 16:18:17.933	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/03 - 16:18:24.730	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:18:24.732	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/03 - 16:19:52.560	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/middleware/operation.go:72	create operation record error:	{"err": "Error 1146: Table 'weekly_report.sys_operation_records' doesn't exist"}
+[goweb-demo]2021/11/03 - 16:35:57.599	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:35:57.601	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/03 - 16:37:11.018	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:46	router register success
+[goweb-demo]2021/11/03 - 16:37:11.021	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/03 - 16:37:22.986	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection

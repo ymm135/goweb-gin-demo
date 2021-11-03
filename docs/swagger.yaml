@@ -14,35 +14,6 @@ definitions:
       endpoint:
         type: string
     type: object
-  config.Autocode:
-    properties:
-      root:
-        type: string
-      server:
-        type: string
-      serverApi:
-        type: string
-      serverInitialize:
-        type: string
-      serverModel:
-        type: string
-      serverRequest:
-        type: string
-      serverRouter:
-        type: string
-      serverService:
-        type: string
-      transferRestart:
-        type: boolean
-      web:
-        type: string
-      webApi:
-        type: string
-      webForm:
-        type: string
-      webTable:
-        type: string
-    type: object
   config.Captcha:
     properties:
       imgHeight:
@@ -190,9 +161,6 @@ definitions:
     properties:
       aliyunOSS:
         $ref: '#/definitions/config.AliyunOSS'
-      autoCode:
-        $ref: '#/definitions/config.Autocode'
-        description: auto
       captcha:
         $ref: '#/definitions/config.Captcha'
       casbin:
@@ -391,6 +359,14 @@ definitions:
       id:
         type: integer
     type: object
+  response.SysAuthorityCopyResponse:
+    properties:
+      authority:
+        $ref: '#/definitions/web.SysAuthority'
+      oldAuthorityId:
+        description: 旧角色ID
+        type: string
+    type: object
   web.FileUploadAndDownload:
     properties:
       createdAt:
@@ -530,28 +506,13 @@ definitions:
         description: 地址栏携带参数的值
         type: string
     type: object
-  web.SysUser:
+  web.SysSimpleUser:
     properties:
-      activeColor:
-        description: 活跃颜色
-        type: string
-      authorities:
-        items:
-          $ref: '#/definitions/web.SysAuthority'
-        type: array
-      authority:
-        $ref: '#/definitions/web.SysAuthority'
       authorityId:
         description: 用户角色ID
         type: string
-      baseColor:
-        description: 基础颜色
-        type: string
       createdAt:
         description: 创建时间
-        type: string
-      headerImg:
-        description: 用户头像
         type: string
       id:
         description: 主键ID
@@ -559,17 +520,14 @@ definitions:
       nickName:
         description: 用户昵称
         type: string
-      sideMode:
-        description: 用户侧边主题
+      password:
+        description: 用户登录密码
         type: string
       updatedAt:
         description: 更新时间
         type: string
       userName:
         description: 用户登录名
-        type: string
-      uuid:
-        description: 用户UUID
         type: string
     type: object
   web.System:
@@ -580,6 +538,144 @@ definitions:
 info:
   contact: {}
 paths:
+  /authority/copyAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 旧角色id, 新权限id, 新权限名, 新父角色id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/response.SysAuthorityCopyResponse'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"拷贝成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 拷贝角色
+      tags:
+      - Authority
+  /authority/createAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 权限id, 权限名, 父角色id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建角色
+      tags:
+      - Authority
+  /authority/deleteAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除角色
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除角色
+      tags:
+      - Authority
+  /authority/getAuthorityList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PageInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取角色列表
+      tags:
+      - Authority
+  /authority/setDataAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 设置角色资源权限
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"设置成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 设置角色资源权限
+      tags:
+      - Authority
+  /authority/updateAuthority:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 权限id, 权限名, 父角色id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/web.SysAuthority'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新角色信息
+      tags:
+      - Authority
   /base/captcha:
     post:
       consumes:
@@ -788,7 +884,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 上传文件示例
+      summary: 上传文件
       tags:
       - FileUploadAndDownload
   /jwt/jsonInBlacklist:
@@ -1226,12 +1322,12 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: ID, 用户名, 昵称, 头像链接
+      - description: ID, 用户名, 昵称, 密码
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysUser'
+          $ref: '#/definitions/web.SysSimpleUser'
       produces:
       - application/json
       responses:
