@@ -24,4 +24,17 @@ func (s *WtReportsRouter) InitWtReportsRouter(Router *gin.RouterGroup) {
 		wtReportsRouterWithoutRecord.GET("findWtReports", wtReportsApi.FindWtReports)        // 根据ID获取WtReports
 		wtReportsRouterWithoutRecord.GET("getWtReportsList", wtReportsApi.GetWtReportsList)  // 获取WtReports列表
 	}
+
+	wtTemplatesRouter := Router.Group("wtTemplates").Use(middleware.OperationRecord())
+	wtTemplatesRouterWithoutRecord := Router.Group("wtTemplates")
+	var wtTemplatesApi = api.ApiGroupApp.WtServiceGroup.WtTemplateApi
+	{
+		wtTemplatesRouter.POST("createWtTemplate", wtTemplatesApi.CreateWtTemplate)   // 新建周报模板
+		wtTemplatesRouter.DELETE("deleteWtTemplateByIds", wtTemplatesApi.DeleteWtTemplateByIds) // 批量删除周报模板
+		wtTemplatesRouter.PUT("updateWtTemplate", wtTemplatesApi.UpdateWtTemplate)    // 更新周报模板
+	}
+	{
+		wtTemplatesRouterWithoutRecord.GET("findWtTemplate", wtTemplatesApi.FindWtTemplate)        // 根据ID获取周报模板
+		wtTemplatesRouterWithoutRecord.GET("getWtTemplateList", wtTemplatesApi.GetWtTemplateList)  // 获取周报模板列表
+	}
 }

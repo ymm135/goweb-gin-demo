@@ -1519,6 +1519,11 @@ var doc = `{
                     },
                     {
                         "type": "string",
+                        "name": "pictures",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
                         "name": "sendTo",
                         "in": "query"
                     },
@@ -1526,6 +1531,11 @@ var doc = `{
                         "type": "string",
                         "description": "更新时间",
                         "name": "updatedAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "userName",
                         "in": "query"
                     }
                 ],
@@ -1564,6 +1574,229 @@ var doc = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/request.WtReportsVO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtTemplates/createWtTemplate": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtTemplate"
+                ],
+                "summary": "创建周报模板",
+                "parameters": [
+                    {
+                        "description": "创建周报模板",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.WtTemplateVO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtTemplates/deleteWtTemplateByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtTemplate"
+                ],
+                "summary": "批量删除WtTemplate",
+                "parameters": [
+                    {
+                        "description": "批量删除周报模板",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.IdsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"批量删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtTemplates/findWtTemplate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtTemplate"
+                ],
+                "summary": "用id查询周报模板",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "主键ID",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtTemplates/getWtTemplateList": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtTemplate"
+                ],
+                "summary": "分页获取周报模板列表",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "contents",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "创建时间",
+                        "name": "createdAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "header",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "主键ID",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页大小",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "更新时间",
+                        "name": "updatedAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "userName",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtTemplates/updateWtTemplate": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtTemplate"
+                ],
+                "summary": "更新周报模板",
+                "parameters": [
+                    {
+                        "description": "更新周报模板",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.WtTemplateVO"
                         }
                     }
                 ],
@@ -2138,7 +2371,7 @@ var doc = `{
                 "attachments": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/wt.Attachments"
+                        "$ref": "#/definitions/wt.UploadFileJson"
                     }
                 },
                 "contents": {
@@ -2153,13 +2386,39 @@ var doc = `{
                 "id": {
                     "type": "integer"
                 },
+                "pictures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/wt.UploadFileJson"
+                    }
+                },
                 "sendTo": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/wt.UserInfo"
                     }
                 },
-                "userId": {
+                "userName": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.WtTemplateVO": {
+            "type": "object",
+            "properties": {
+                "contents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/wt.Contents"
+                    }
+                },
+                "header": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "userName": {
                     "type": "string"
                 }
             }
@@ -2378,17 +2637,6 @@ var doc = `{
                 }
             }
         },
-        "wt.Attachments": {
-            "type": "object",
-            "properties": {
-                "attachmentName": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
         "wt.Contents": {
             "type": "object",
             "properties": {
@@ -2396,6 +2644,28 @@ var doc = `{
                     "type": "string"
                 },
                 "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "wt.UploadFileJson": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "wt.UserInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
                     "type": "string"
                 }
             }

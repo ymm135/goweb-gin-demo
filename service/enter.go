@@ -14,6 +14,7 @@ type ServiceGroup struct {
 	AuthorityService
 
 	wt.WtReportsService
+	wt.WtTemplateService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

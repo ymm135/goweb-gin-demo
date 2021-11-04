@@ -6,6 +6,7 @@ import (
 	"goweb-gin-demo/model/common/request"
 	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
+	wtRes "goweb-gin-demo/model/wt/response"
 )
 
 type WtReportsService struct {
@@ -32,7 +33,7 @@ func (wtReportsService *WtReportsService) UpdateWtReports(reportsVO wtReq.WtRepo
 }
 
 // GetWtReports 根据id获取周报
-func (wtReportsService *WtReportsService) GetWtReports(id uint) (err error, reportsVO wtReq.WtReportsVO) {
+func (wtReportsService *WtReportsService) GetWtReports(id uint) (err error, reportsVO wtRes.WtReportsResult) {
 	report := wt.WtReports{}
 	err = global.GLOBAL_DB.Where("id = ?", id).First(&report).Error
 	reportVO := reportToVO(report)
@@ -79,8 +80,8 @@ func voToRrports(reportsVO wtReq.WtReportsVO) wt.WtReports {
 }
 
 // 批量转换 数据转换, 把字符串转换为json
-func reportsToVOs(wtReportsList []wt.WtReports) []wtReq.WtReportsVO {
-	var reportsVOList []wtReq.WtReportsVO
+func reportsToVOs(wtReportsList []wt.WtReports) []wtRes.WtReportsResult {
+	var reportsVOList []wtRes.WtReportsResult
 	for _, report := range wtReportsList {
 		reportVO := reportToVO(report)
 		reportsVOList = append(reportsVOList, reportVO)
@@ -89,9 +90,10 @@ func reportsToVOs(wtReportsList []wt.WtReports) []wtReq.WtReportsVO {
 }
 
 //单个转换
-func reportToVO(report wt.WtReports) wtReq.WtReportsVO {
-	reportVO := wtReq.WtReportsVO{}
-	reportVO.ID = report.ID
+func reportToVO(report wt.WtReports) wtRes.WtReportsResult {
+	reportVO := wtRes.WtReportsResult{}
+	reportVO.GLOBAL_MODEL = report.GLOBAL_MODEL
+
 	reportVO.UserName = report.UserName
 	reportVO.Header = report.Header
 	json.Unmarshal([]byte(report.SendTo), &reportVO.SendTo)

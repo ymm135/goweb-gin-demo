@@ -10,7 +10,6 @@ type WtReportsSearch struct{
 	request.PageInfo
 }
 
-//
 type WtReportsVO struct{
 	ID uint
 	UserName string `json:"userName"`

@@ -387,7 +387,7 @@ definitions:
     properties:
       attachments:
         items:
-          $ref: '#/definitions/wt.Attachments'
+          $ref: '#/definitions/wt.UploadFileJson'
         type: array
       contents:
         items:
@@ -397,11 +397,28 @@ definitions:
         type: string
       id:
         type: integer
+      pictures:
+        items:
+          $ref: '#/definitions/wt.UploadFileJson'
+        type: array
       sendTo:
         items:
-          type: string
+          $ref: '#/definitions/wt.UserInfo'
         type: array
-      userId:
+      userName:
+        type: string
+    type: object
+  request.WtTemplateVO:
+    properties:
+      contents:
+        items:
+          $ref: '#/definitions/wt.Contents'
+        type: array
+      header:
+        type: string
+      id:
+        type: integer
+      userName:
         type: string
     type: object
   response.SysAuthorityCopyResponse:
@@ -556,18 +573,25 @@ definitions:
       config:
         $ref: '#/definitions/config.Server'
     type: object
-  wt.Attachments:
-    properties:
-      attachmentName:
-        type: string
-      type:
-        type: string
-    type: object
   wt.Contents:
     properties:
       content:
         type: string
       title:
+        type: string
+    type: object
+  wt.UploadFileJson:
+    properties:
+      key:
+        type: string
+      name:
+        type: string
+    type: object
+  wt.UserInfo:
+    properties:
+      id:
+        type: integer
+      name:
         type: string
     type: object
 info:
@@ -1473,11 +1497,17 @@ paths:
         name: pageSize
         type: integer
       - in: query
+        name: pictures
+        type: string
+      - in: query
         name: sendTo
         type: string
       - description: 更新时间
         in: query
         name: updatedAt
+        type: string
+      - in: query
+        name: userName
         type: string
       produces:
       - application/json
@@ -1514,4 +1544,140 @@ paths:
       summary: 更新周报
       tags:
       - WtReports
+  /wtTemplates/createWtTemplate:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建周报模板
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtTemplateVO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建周报模板
+      tags:
+      - WtTemplate
+  /wtTemplates/deleteWtTemplateByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除周报模板
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除WtTemplate
+      tags:
+      - WtTemplate
+  /wtTemplates/findWtTemplate:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 主键ID
+        in: query
+        name: id
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询周报模板
+      tags:
+      - WtTemplate
+  /wtTemplates/getWtTemplateList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: contents
+        type: string
+      - description: 创建时间
+        in: query
+        name: createdAt
+        type: string
+      - in: query
+        name: header
+        type: string
+      - description: 主键ID
+        in: query
+        name: id
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页大小
+        in: query
+        name: pageSize
+        type: integer
+      - description: 更新时间
+        in: query
+        name: updatedAt
+        type: string
+      - in: query
+        name: userName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取周报模板列表
+      tags:
+      - WtTemplate
+  /wtTemplates/updateWtTemplate:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新周报模板
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtTemplateVO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新周报模板
+      tags:
+      - WtTemplate
 swagger: "2.0"
