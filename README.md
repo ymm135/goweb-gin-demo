@@ -782,13 +782,17 @@ gin-vue-admin提供代码自动生成功能，选择数据库表结构，可直�
 {
     "id":100,
     "header":"周报",
+    "userName":"xiaoming",
+    "sendTo": ["xiao1", "xiao2"],
     "contents":[
-        {"title":"", "content":""},
-        {"title":"", "content":""}
+        {"title":"本周工作", "content":"<strong>本周工作</strong>这里"},
+        {"title":"下周计划", "content":"<p>下周计划在这</p>这里"}
     ],
+    "pics":[
+        { "key":"fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.png", "name":"demo.png"}
+    ]
     "attachments":[
-         {"pic":"fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.png"},
-         {"file":"2db0df442ea6d92d75657712a29e5604_20211102201017.txt"}
+        { "key":"fe01ce2a7fbac8fafaed7c982a04e220_20211102170428.c", "name":"demo.c"}
     ]
 }
 

@@ -302,6 +302,13 @@ definitions:
         description: 主键ID
         type: number
     type: object
+  request.IdsReq:
+    properties:
+      ids:
+        items:
+          type: integer
+        type: array
+    type: object
   request.Login:
     properties:
       captcha:
@@ -358,6 +365,44 @@ definitions:
         type: array
       id:
         type: integer
+    type: object
+  request.SetUserInfo:
+    properties:
+      authorityId:
+        description: 用户角色ID
+        type: string
+      id:
+        type: integer
+      nickName:
+        description: 用户昵称
+        type: string
+      password:
+        description: 用户登录密码
+        type: string
+      userName:
+        description: 用户登录名
+        type: string
+    type: object
+  request.WtReportsVO:
+    properties:
+      attachments:
+        items:
+          $ref: '#/definitions/wt.Attachments'
+        type: array
+      contents:
+        items:
+          $ref: '#/definitions/wt.Contents'
+        type: array
+      header:
+        type: string
+      id:
+        type: integer
+      sendTo:
+        items:
+          type: string
+        type: array
+      userId:
+        type: string
     type: object
   response.SysAuthorityCopyResponse:
     properties:
@@ -506,34 +551,24 @@ definitions:
         description: 地址栏携带参数的值
         type: string
     type: object
-  web.SysSimpleUser:
-    properties:
-      authorityId:
-        description: 用户角色ID
-        type: string
-      createdAt:
-        description: 创建时间
-        type: string
-      id:
-        description: 主键ID
-        type: integer
-      nickName:
-        description: 用户昵称
-        type: string
-      password:
-        description: 用户登录密码
-        type: string
-      updatedAt:
-        description: 更新时间
-        type: string
-      userName:
-        description: 用户登录名
-        type: string
-    type: object
   web.System:
     properties:
       config:
         $ref: '#/definitions/config.Server'
+    type: object
+  wt.Attachments:
+    properties:
+      attachmentName:
+        type: string
+      type:
+        type: string
+    type: object
+  wt.Contents:
+    properties:
+      content:
+        type: string
+      title:
+        type: string
     type: object
 info:
   contact: {}
@@ -1327,7 +1362,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysSimpleUser'
+          $ref: '#/definitions/request.SetUserInfo'
       produces:
       - application/json
       responses:
@@ -1340,4 +1375,143 @@ paths:
       summary: 设置用户信息
       tags:
       - SysUser
+  /wtReports/createWtReports:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建周报
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtReportsVO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建周报
+      tags:
+      - WtReports
+  /wtReports/deleteWtReportsByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除周报
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除周报
+      tags:
+      - WtReports
+  /wtReports/findWtReports:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 主键ID
+        in: query
+        name: id
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询WtReports
+      tags:
+      - WtReports
+  /wtReports/getWtReportsList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: attachments
+        type: string
+      - in: query
+        name: contents
+        type: string
+      - description: 创建时间
+        in: query
+        name: createdAt
+        type: string
+      - in: query
+        name: header
+        type: string
+      - description: 主键ID
+        in: query
+        name: id
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页大小
+        in: query
+        name: pageSize
+        type: integer
+      - in: query
+        name: sendTo
+        type: string
+      - description: 更新时间
+        in: query
+        name: updatedAt
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取WtReports列表
+      tags:
+      - WtReports
+  /wtReports/updateWtReports:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新周报
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtReportsVO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新周报
+      tags:
+      - WtReports
 swagger: "2.0"

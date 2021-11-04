@@ -1335,13 +1335,241 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysSimpleUser"
+                            "$ref": "#/definitions/request.SetUserInfo"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "{\"success\":true,\"data\":{},\"msg\":\"设置成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtReports/createWtReports": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtReports"
+                ],
+                "summary": "创建周报",
+                "parameters": [
+                    {
+                        "description": "创建周报",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.WtReportsVO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtReports/deleteWtReportsByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtReports"
+                ],
+                "summary": "批量删除周报",
+                "parameters": [
+                    {
+                        "description": "批量删除周报",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.IdsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"批量删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtReports/findWtReports": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtReports"
+                ],
+                "summary": "用id查询WtReports",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "description": "主键ID",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtReports/getWtReportsList": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtReports"
+                ],
+                "summary": "分页获取WtReports列表",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "attachments",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "contents",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "创建时间",
+                        "name": "createdAt",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "header",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "主键ID",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页大小",
+                        "name": "pageSize",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "sendTo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "更新时间",
+                        "name": "updatedAt",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/wtReports/updateWtReports": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtReports"
+                ],
+                "summary": "更新周报",
+                "parameters": [
+                    {
+                        "description": "更新周报",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.WtReportsVO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"更新成功\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -1785,6 +2013,17 @@ var doc = `{
                 }
             }
         },
+        "request.IdsReq": {
+            "type": "object",
+            "properties": {
+                "ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
         "request.Login": {
             "type": "object",
             "properties": {
@@ -1866,6 +2105,62 @@ var doc = `{
                 },
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "request.SetUserInfo": {
+            "type": "object",
+            "properties": {
+                "authorityId": {
+                    "description": "用户角色ID",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "nickName": {
+                    "description": "用户昵称",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "用户登录密码",
+                    "type": "string"
+                },
+                "userName": {
+                    "description": "用户登录名",
+                    "type": "string"
+                }
+            }
+        },
+        "request.WtReportsVO": {
+            "type": "object",
+            "properties": {
+                "attachments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/wt.Attachments"
+                    }
+                },
+                "contents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/wt.Contents"
+                    }
+                },
+                "header": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "sendTo": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "userId": {
+                    "type": "string"
                 }
             }
         },
@@ -2075,44 +2370,33 @@ var doc = `{
                 }
             }
         },
-        "web.SysSimpleUser": {
-            "type": "object",
-            "properties": {
-                "authorityId": {
-                    "description": "用户角色ID",
-                    "type": "string"
-                },
-                "createdAt": {
-                    "description": "创建时间",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "主键ID",
-                    "type": "integer"
-                },
-                "nickName": {
-                    "description": "用户昵称",
-                    "type": "string"
-                },
-                "password": {
-                    "description": "用户登录密码",
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "description": "更新时间",
-                    "type": "string"
-                },
-                "userName": {
-                    "description": "用户登录名",
-                    "type": "string"
-                }
-            }
-        },
         "web.System": {
             "type": "object",
             "properties": {
                 "config": {
                     "$ref": "#/definitions/config.Server"
+                }
+            }
+        },
+        "wt.Attachments": {
+            "type": "object",
+            "properties": {
+                "attachmentName": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "wt.Contents": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
                 }
             }
         }

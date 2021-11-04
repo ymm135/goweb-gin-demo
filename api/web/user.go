@@ -4,6 +4,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
+	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/request"
 	"goweb-gin-demo/model/common/response"
@@ -11,7 +12,6 @@ import (
 	systemReq "goweb-gin-demo/model/web/request"
 	webRes "goweb-gin-demo/model/web/response"
 	"goweb-gin-demo/utils"
-	"go.uber.org/zap"
 	"strconv"
 	"time"
 )
@@ -275,7 +275,7 @@ func (b *BaseApi) DeleteUser(c *gin.Context) {
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body web.SysSimpleUser true "ID, 用户名, 昵称, 密码"
+// @Param data body request.SetUserInfo true "ID, 用户名, 昵称, 密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"设置成功"}"
 // @Router /user/setUserInfo [put]
 func (b *BaseApi) SetUserInfo(c *gin.Context) {

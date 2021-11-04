@@ -1,5 +1,7 @@
 package service
 
+import "goweb-gin-demo/service/wt"
+
 type ServiceGroup struct {
 	UserService
 	JwtService
@@ -10,6 +12,8 @@ type ServiceGroup struct {
 	SystemConfigService
 	FileUploadAndDownloadService
 	AuthorityService
+
+	wt.WtReportsService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

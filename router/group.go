@@ -1,6 +1,9 @@
 package router
 
-import "goweb-gin-demo/router/web"
+import (
+	"goweb-gin-demo/router/web"
+	"goweb-gin-demo/router/wt"
+)
 
 type RouterGroup struct {
 	web.BaseRouter
@@ -10,6 +13,8 @@ type RouterGroup struct {
 	web.SysRouter
 	web.FileUploadAndDownloadRouter
 	web.AuthorityRouter
+
+	wt.WtReportsRouter
 }
 
 var RouterGroupApp = new(RouterGroup)

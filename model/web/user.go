@@ -19,11 +19,3 @@ type SysUser struct {
 	Authority   SysAuthority   `json:"authority" gorm:"foreignKey:AuthorityId;references:AuthorityId;comment:用户角色"`
 	Authorities []SysAuthority `json:"authorities" gorm:"many2many:sys_user_authority;"`
 }
-
-type SysSimpleUser struct {
-	global.GLOBAL_MODEL
-	Username    string         `json:"userName" gorm:"comment:用户登录名"`                                                        // 用户登录名
-	Password    string         `json:"password"  gorm:"comment:用户登录密码"`                                                             // 用户登录密码
-	NickName    string         `json:"nickName" gorm:"default:系统用户;comment:用户昵称"`                                            // 用户昵称
-	AuthorityId string         `json:"authorityId" gorm:"default:888;comment:用户角色ID"`                                        // 用户角色ID
-}

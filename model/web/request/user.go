@@ -35,3 +35,11 @@ type SetUserAuthorities struct {
 	ID           uint
 	AuthorityIds []string `json:"authorityIds"` // 角色ID
 }
+
+type SetUserInfo struct {
+	ID          uint
+	Username    string         `json:"userName" gorm:"comment:用户登录名"`                                                        // 用户登录名
+	Password    string         `json:"password"  gorm:"comment:用户登录密码"`                                                     // 用户登录密码
+	NickName    string         `json:"nickName" gorm:"default:系统用户;comment:用户昵称"`                                          // 用户昵称
+	AuthorityId string         `json:"authorityId" gorm:"default:888;comment:用户角色ID"`                                        // 用户角色ID
+}
