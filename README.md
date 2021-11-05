@@ -780,20 +780,57 @@ gin-vue-admin提供代码自动生成功能，选择数据库表结构，可直�
 ```
 // 周报
 {
-    "id":100,
-    "header":"周报",
-    "userName":"xiaoming",
-    "sendTo": ["xiao1", "xiao2"],
-    "contents":[
-        {"title":"本周工作", "content":"<strong>本周工作</strong>这里"},
-        {"title":"下周计划", "content":"<p>下周计划在这</p>这里"}
-    ],
-    "pics":[
-        { "key":"fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.png", "name":"demo.png"}
-    ]
-    "attachments":[
-        { "key":"fe01ce2a7fbac8fafaed7c982a04e220_20211102170428.c", "name":"demo.c"}
-    ]
+    "code": 0,
+    "data": {
+        "rewtReports": {
+            "ID": 100,
+            "CreatedAt": "2021-11-04T03:11:07Z",
+            "UpdatedAt": "2021-11-04T11:35:11Z",
+            "userName": "xiaoming",
+            "sendTo": [
+                {
+                    "ID": 1,
+                    "name": "xiao11"
+                },
+                {
+                    "ID": 2,
+                    "name": "xiao21"
+                }
+            ],
+            "header": "周报",
+            "contents": [
+                {
+                    "title": "本周工作",
+                    "content": "<strong>本周工作</strong>这里"
+                },
+                {
+                    "title": "下周计划",
+                    "content": "<p>下周计划在这</p>这里"
+                }
+            ],
+            "pictures": [
+                {
+                    "key": "fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.png",
+                    "name": "demo.png"
+                },
+                {
+                    "key": "fe01ce2a7fbac8fafaed7c982a04e229_20211102170420.png",
+                    "name": "demo1.png"
+                }
+            ],
+            "attachments": [
+                {
+                    "key": "fe01ce2a7fbac8fafaed7c982a04e229_20211102170427.txt",
+                    "name": "demo.txt"
+                },
+                {
+                    "key": "fe01ce2a7fbac8fafaed7c982a04e229_20211102170420.txt",
+                    "name": "demo1.txt"
+                }
+            ]
+        }
+    },
+    "msg": "操作成功"
 }
 
 // 评论

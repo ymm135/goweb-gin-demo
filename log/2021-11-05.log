@@ -1,0 +1,29 @@
+[goweb-demo]2021/11/05 - 09:04:23.221	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:47	router register success
+[goweb-demo]2021/11/05 - 09:04:23.223	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 09:10:09.982	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 09:10:17.846	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:47	router register success
+[goweb-demo]2021/11/05 - 09:10:17.847	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 10:33:46.120	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 11:14:00.392	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:47	router register success
+[goweb-demo]2021/11/05 - 11:14:00.394	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:28:40.712	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 11:37:11.227	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 11:37:11.230	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:37:44.494	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 11:37:51.391	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 11:37:51.397	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:39:39.024	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/wt/wt_comments.go:30	创建失败!	{"err": "Error 1048: Column 'report_id' cannot be null"}
+[goweb-demo]2021/11/05 - 11:43:45.723	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 11:43:58.720	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 11:43:58.721	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:45:15.899	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 11:45:15.900	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:50:45.851	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 11:50:45.852	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 11:53:06.019	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/wt/wt_comments.go:30	创建失败!	{"err": "Error 1062: Duplicate entry '1' for key 'PRIMARY'"}
+[goweb-demo]2021/11/05 - 12:15:59.500	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 12:16:53.847	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 12:16:53.849	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}
+[goweb-demo]2021/11/05 - 12:17:41.333	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8889: use of closed network connection
+[goweb-demo]2021/11/05 - 12:17:49.963	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:48	router register success
+[goweb-demo]2021/11/05 - 12:17:49.965	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}

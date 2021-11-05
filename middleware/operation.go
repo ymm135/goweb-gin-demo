@@ -2,20 +2,20 @@ package middleware
 
 import (
 	"bytes"
+	"goweb-gin-demo/service"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/web"
 	"goweb-gin-demo/model/web/request"
-	"goweb-gin-demo/service"
-	"go.uber.org/zap"
 )
 
-var operationRecordService = service.ServiceGroupApp.OperationRecordService
+var operationRecordService = service.ServiceGroupApp.SystemServiceGroup.OperationRecordService
 
 func OperationRecord() gin.HandlerFunc {
 	return func(c *gin.Context) {

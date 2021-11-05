@@ -15,6 +15,7 @@ type RouterGroup struct {
 	web.AuthorityRouter
 
 	wt.WtReportsRouter
+	wt.WtRuleRouter
 }
 
 var RouterGroupApp = new(RouterGroup)

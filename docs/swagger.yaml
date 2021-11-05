@@ -408,7 +408,22 @@ definitions:
       userName:
         type: string
     type: object
-  request.WtTemplateVO:
+  request.WtRuleRes:
+    properties:
+      endTime:
+        type: string
+      id:
+        type: integer
+      reporters:
+        items:
+          type: string
+        type: array
+      startTime:
+        type: string
+      userId:
+        type: integer
+    type: object
+  request.WtTemplateRes:
     properties:
       contents:
         items:
@@ -592,6 +607,24 @@ definitions:
       id:
         type: integer
       name:
+        type: string
+    type: object
+  wt.WtComment:
+    properties:
+      comment:
+        type: string
+      createdAt:
+        description: 创建时间
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      reportId:
+        type: integer
+      updatedAt:
+        description: 更新时间
+        type: string
+      userName:
         type: string
     type: object
 info:
@@ -1399,6 +1432,142 @@ paths:
       summary: 设置用户信息
       tags:
       - SysUser
+  /wtComment/createWtComment:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建周报评论
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/wt.WtComment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建周报评论
+      tags:
+      - WtComment
+  /wtComment/deleteWtCommentByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除周报评论
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除周报评论
+      tags:
+      - WtComment
+  /wtComment/findWtComment:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 主键ID
+        in: query
+        name: id
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询周报评论
+      tags:
+      - WtComment
+  /wtComment/getWtCommentList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: comment
+        type: string
+      - description: 创建时间
+        in: query
+        name: createdAt
+        type: string
+      - description: 主键ID
+        in: query
+        name: id
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页大小
+        in: query
+        name: pageSize
+        type: integer
+      - in: query
+        name: reportId
+        type: integer
+      - description: 更新时间
+        in: query
+        name: updatedAt
+        type: string
+      - in: query
+        name: userName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取周报评论列表
+      tags:
+      - WtComment
+  /wtComment/updateWtComment:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新周报评论
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/wt.WtComment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新周报评论
+      tags:
+      - WtComment
   /wtReports/createWtReports:
     post:
       consumes:
@@ -1544,6 +1713,145 @@ paths:
       summary: 更新周报
       tags:
       - WtReports
+  /wtRule/createWtRule:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建统计规则
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtRuleRes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建统计规则
+      tags:
+      - WtRule
+  /wtRule/deleteWtRuleByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除统计规则
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除统计规则
+      tags:
+      - WtRule
+  /wtRule/findWtRule:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 主键ID
+        in: query
+        name: id
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询统计规则
+      tags:
+      - WtRule
+  /wtRule/getWtRuleList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建时间
+        in: query
+        name: createdAt
+        type: string
+      - in: query
+        name: endTime
+        type: string
+      - description: 主键ID
+        in: query
+        name: id
+        type: integer
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页大小
+        in: query
+        name: pageSize
+        type: integer
+      - in: query
+        name: reporters
+        type: string
+      - in: query
+        name: startTime
+        type: string
+      - description: 更新时间
+        in: query
+        name: updatedAt
+        type: string
+      - in: query
+        name: userId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取统计规则列表
+      tags:
+      - WtRule
+  /wtRule/updateWtRule:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新统计规则
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WtRuleRes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新统计规则
+      tags:
+      - WtRule
   /wtTemplates/createWtTemplate:
     post:
       consumes:
@@ -1554,7 +1862,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/request.WtTemplateVO'
+          $ref: '#/definitions/request.WtTemplateRes'
       produces:
       - application/json
       responses:
@@ -1617,6 +1925,9 @@ paths:
       - application/json
       parameters:
       - in: query
+        name: attachments
+        type: string
+      - in: query
         name: contents
         type: string
       - description: 创建时间
@@ -1638,6 +1949,12 @@ paths:
         in: query
         name: pageSize
         type: integer
+      - in: query
+        name: pictures
+        type: string
+      - in: query
+        name: sendTo
+        type: string
       - description: 更新时间
         in: query
         name: updatedAt
@@ -1667,7 +1984,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/request.WtTemplateVO'
+          $ref: '#/definitions/request.WtTemplateRes'
       produces:
       - application/json
       responses:

@@ -1,20 +1,19 @@
 package middleware
 
 import (
+	"goweb-gin-demo/service"
 	"goweb-gin-demo/utils"
 	"strconv"
 	"time"
 
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/response"
 	"goweb-gin-demo/model/web"
-	"goweb-gin-demo/service"
-
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
-var jwtService = service.ServiceGroupApp.JwtService
+var jwtService = service.ServiceGroupApp.SystemServiceGroup.JwtService
 
 func JWTAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {

@@ -8,7 +8,7 @@ import (
 	"goweb-gin-demo/service"
 )
 
-var casbinService = service.ServiceGroupApp.CasbinService
+var casbinService = service.ServiceGroupApp.SystemServiceGroup.CasbinService
 
 // 拦截器
 func CasbinHandler() gin.HandlerFunc {

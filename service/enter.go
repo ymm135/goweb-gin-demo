@@ -1,20 +1,13 @@
 package service
 
-import "goweb-gin-demo/service/wt"
+import (
+	"goweb-gin-demo/service/system"
+	"goweb-gin-demo/service/wt"
+)
 
 type ServiceGroup struct {
-	UserService
-	JwtService
-	CasbinService
-	OperationRecordService
-	MenuService
-	BaseMenuService
-	SystemConfigService
-	FileUploadAndDownloadService
-	AuthorityService
-
-	wt.WtReportsService
-	wt.WtTemplateService
+	SystemServiceGroup system.SystemServiceGroup
+	WtServiceGroup     wt.WtServiceGroup
 }
 
 var ServiceGroupApp = new(ServiceGroup)

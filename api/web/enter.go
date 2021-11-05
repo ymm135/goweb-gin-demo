@@ -13,12 +13,12 @@ type ApiGroup struct {
 	SystemApi
 }
 
-var userService = service.ServiceGroupApp.UserService
-var jwtService =  service.ServiceGroupApp.JwtService
-var menuService = service.ServiceGroupApp.MenuService
-var baseMenuService = service.ServiceGroupApp.BaseMenuService
-var systemConfigService = service.ServiceGroupApp.SystemConfigService
-var fileUploadAndDownloadService = service.ServiceGroupApp.FileUploadAndDownloadService
-var authorityService = service.ServiceGroupApp.AuthorityService
-var casbinService = service.ServiceGroupApp.CasbinService
+var userService = service.ServiceGroupApp.SystemServiceGroup.UserService
+var jwtService =  service.ServiceGroupApp.SystemServiceGroup.JwtService
+var menuService = service.ServiceGroupApp.SystemServiceGroup.MenuService
+var baseMenuService = service.ServiceGroupApp.SystemServiceGroup.BaseMenuService
+var systemConfigService = service.ServiceGroupApp.SystemServiceGroup.SystemConfigService
+var fileUploadAndDownloadService = service.ServiceGroupApp.SystemServiceGroup.FileUploadAndDownloadService
+var authorityService = service.ServiceGroupApp.SystemServiceGroup.AuthorityService
+var casbinService = service.ServiceGroupApp.SystemServiceGroup.CasbinService
 

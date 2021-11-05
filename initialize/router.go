@@ -42,6 +42,7 @@ func Routers() *gin.Engine {
 		RouterGroup.InitFileUploadAndDownloadRouter(PrivateGroup)
 		RouterGroup.InitAuthorityRouter(PrivateGroup)
 		RouterGroup.InitWtReportsRouter(PrivateGroup)
+		RouterGroup.InitWtRuleRouter(PrivateGroup)
 	}
 
 	global.GLOBAL_LOG.Info("router register success")
