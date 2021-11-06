@@ -105,17 +105,18 @@ func (wtReportsApi *WtReportsApi) FindWtReports(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /wtReports/getWtReportsList [get]
 func (wtReportsApi *WtReportsApi) GetWtReportsList(c *gin.Context) {
-	var pageInfo wtReq.WtReportsSearch
-	_ = c.ShouldBindQuery(&pageInfo)
-	if err, list, total := wtReportsService.GetWtReportsInfoList(pageInfo); err != nil {
+	var searchInfo wtReq.WtReportsSearch
+	_ = c.ShouldBindQuery(&searchInfo)
+
+	if err, list, total := wtReportsService.GetWtReportsInfoList(searchInfo); err != nil {
 		global.GLOBAL_LOG.Error("获取失败!", zap.Any("err", err))
 		response.FailWithMessage("获取失败", c)
 	} else {
 		response.OkWithDetailed(response.PageResult{
 			List:     list,
 			Total:    total,
-			Page:     pageInfo.Page,
-			PageSize: pageInfo.PageSize,
+			Page:     searchInfo.Page,
+			PageSize: searchInfo.PageSize,
 		}, "获取成功", c)
 	}
 }

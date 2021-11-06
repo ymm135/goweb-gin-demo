@@ -1640,23 +1640,13 @@ paths:
       consumes:
       - application/json
       parameters:
-      - in: query
-        name: attachments
-        type: string
-      - in: query
-        name: contents
-        type: string
-      - description: 创建时间
+      - example: xx项目
         in: query
-        name: createdAt
+        name: content
         type: string
       - in: query
-        name: header
+        name: endTime
         type: string
-      - description: 主键ID
-        in: query
-        name: id
-        type: integer
       - description: 页码
         in: query
         name: page
@@ -1665,19 +1655,13 @@ paths:
         in: query
         name: pageSize
         type: integer
-      - in: query
-        name: pictures
-        type: string
-      - in: query
-        name: sendTo
-        type: string
-      - description: 更新时间
+      - example: "2021-11-04 12:36:34"
         in: query
-        name: updatedAt
+        name: startTime
         type: string
       - in: query
-        name: userName
-        type: string
+        name: userId
+        type: integer
       produces:
       - application/json
       responses:

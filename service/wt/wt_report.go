@@ -7,6 +7,7 @@ import (
 	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
 	wtRes "goweb-gin-demo/model/wt/response"
+	"strconv"
 )
 
 type WtReportsService struct {
@@ -45,19 +46,51 @@ func (wtReportsService *WtReportsService) GetWtReports(id uint) (err error, repo
 func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtReportsSearch) (err error, list interface{}, total int64) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
-	// 创建db
-	db := global.GLOBAL_DB.Model(&wt.WtReports{})
-	var wtReportsList []wt.WtReports
-	// 如果有条件搜索 下方会自动创建搜索语句
-	err = db.Count(&total).Error
+
+	reportTable := global.GLOBAL_DB.Table("wt_reports")
+
+	err = reportTable.Count(&total).Error
 	if err != nil {
 		return
 	}
-	err = db.Limit(limit).Offset(offset).Find(&wtReportsList).Error
 
-	reportsVOList := reportsToVOs(wtReportsList)
 
-	return err, reportsVOList, total
+	var reportsSearchBOList []wtRes.WtReportsSearchBO
+
+	if info.Page == 0 {
+		limit = int(total)
+	}
+
+	//首选获取周报的ids
+	var reportIds []uint
+	reportTable.Select("`id`", offset, limit).Offset(offset).Limit(limit).Scan(&reportIds)
+
+	querySql := "SELECT id, user_name, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count "+
+		"FROM wt_reports "+
+		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments WHERE report_id in ? GROUP BY report_id) as cmc "+
+		"on cmc.report_id = wt_reports.id "+
+		"WHERE 1=1 "
+
+	// 条件高级查询
+	if info.UserId > 0 {
+		querySql += " and id = " + strconv.Itoa(int(info.UserId))
+	}
+
+	if len(info.Content) != 0 {
+		querySql += "  and contents LIKE '%" + info.Content + "%'"
+	}
+
+	if len(info.StartTime) != 0 && len(info.EndTime) != 0 {
+		querySql += "  and created_at >= '" + info.StartTime + "' and created_at <= '"+ info.EndTime + "'"
+	}
+
+	querySql += " LIMIT ? OFFSET ? "
+	err = global.GLOBAL_DB.Raw( querySql, reportIds, limit, offset).Scan(&reportsSearchBOList).Error
+
+
+	reportsSearchResultList := reportsToSearchResult(reportsSearchBOList)
+
+	return err, reportsSearchResultList, total
 }
 
 //数据转换一下, 需要把json数据转换为字符串
@@ -77,6 +110,32 @@ func voToRrports(reportsVO wtReq.WtReportsVO) wt.WtReports {
 		Attachments:  string(attachmentsJson),
 	}
 	return wtReports
+}
+
+// 批量转换 数据转换, 把字符串转换为json
+func reportsToSearchResult(wtReportsList []wtRes.WtReportsSearchBO) []wtRes.WtReportsSearchResult {
+	var reportsSearchResults []wtRes.WtReportsSearchResult
+	for _, searchBO := range wtReportsList {
+		reportVO := reportToSearchResult(searchBO)
+		reportsSearchResults = append(reportsSearchResults, reportVO)
+	}
+	return reportsSearchResults
+}
+
+//单个转换
+func reportToSearchResult(searchBO wtRes.WtReportsSearchBO) wtRes.WtReportsSearchResult {
+	searchResult := wtRes.WtReportsSearchResult{}
+	searchResult.GLOBAL_MODEL = searchBO.GLOBAL_MODEL
+
+	searchResult.UserName = searchBO.UserName
+	searchResult.Header = searchBO.Header
+	searchResult.CommentCount = searchBO.CommentCount
+
+	json.Unmarshal([]byte(searchBO.SendTo), &searchResult.SendTo)
+	json.Unmarshal([]byte(searchBO.Contents), &searchResult.Contents)
+	json.Unmarshal([]byte(searchBO.Pictures), &searchResult.Pictures)
+	json.Unmarshal([]byte(searchBO.Attachments), &searchResult.Attachments)
+	return searchResult
 }
 
 // 批量转换 数据转换, 把字符串转换为json

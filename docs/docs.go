@@ -1703,29 +1703,13 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "attachments",
+                        "example": "xx项目",
+                        "name": "content",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "name": "contents",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "创建时间",
-                        "name": "createdAt",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "header",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "主键ID",
-                        "name": "id",
+                        "name": "endTime",
                         "in": "query"
                     },
                     {
@@ -1742,23 +1726,13 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "name": "pictures",
+                        "example": "2021-11-04 12:36:34",
+                        "name": "startTime",
                         "in": "query"
                     },
                     {
-                        "type": "string",
-                        "name": "sendTo",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "更新时间",
-                        "name": "updatedAt",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "userName",
+                        "type": "integer",
+                        "name": "userId",
                         "in": "query"
                     }
                 ],

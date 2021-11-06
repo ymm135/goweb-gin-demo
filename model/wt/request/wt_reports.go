@@ -5,8 +5,12 @@ import (
 	"goweb-gin-demo/model/wt"
 )
 
+//query参数要用: form, 而不是json
 type WtReportsSearch struct{
-	wt.WtReports
+	UserId uint `form:"userId"`
+	StartTime string `form:"startTime" example:"2021-11-04 12:36:34"`
+	EndTime string `form:"endTime"`
+	Content string `form:"content" example:"xx项目"`
 	request.PageInfo
 }
 
