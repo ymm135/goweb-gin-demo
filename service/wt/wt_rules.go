@@ -39,17 +39,21 @@ func (wtRuleService *WtRuleService) GetWtRule(id uint) (err error, wtRule wt.WtR
 }
 
 // GetWtRuleInfoList 分页获取WtRule记录
-func (wtRuleService *WtRuleService) GetWtRuleInfoList(info wtReq.WtRuleSearch) (err error, list interface{}, total int64) {
+func (wtRuleService *WtRuleService) GetWtRuleInfoList(info wtReq.WtRuleSearch) (err error, list []wtRes.WtRuleResult, total int64) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
 	// 创建db
 	db := global.GLOBAL_DB.Model(&wt.WtRule{})
 	var wtRules []wt.WtRule
-	// 如果有条件搜索 下方会自动创建搜索语句
 	err = db.Count(&total).Error
 	if err != nil {
 		return
 	}
+
+	if info.Page <= 0 {
+		limit = int(total)
+	}
+
 	err = db.Limit(limit).Offset(offset).Find(&wtRules).Error
 
 	ruleResults := rulesToVOs(wtRules)
@@ -65,8 +69,10 @@ func voToRule(ruleRes wtReq.WtRuleRes) wt.WtRule {
 		GLOBAL_MODEL: global.GLOBAL_MODEL{ID: ruleRes.ID},
 		UserId:       ruleRes.UserId,
 		Reporters:    string(contentJson),
-		StartTime:    ruleRes.StartTime,
-		EndTime:      ruleRes.EndTime,
+		StartWeek:    ruleRes.StartWeek,
+		StartHour:    ruleRes.StartHour,
+		EndWeek:      ruleRes.EndWeek,
+		EndHour:      ruleRes.EndHour,
 	}
 	return rule
 }
@@ -86,8 +92,10 @@ func ruleToResult(rule wt.WtRule) wtRes.WtRuleResult {
 	ruleResult := wtRes.WtRuleResult{}
 	ruleResult.GLOBAL_MODEL = rule.GLOBAL_MODEL
 	ruleResult.UserId = rule.UserId
-	ruleResult.StartTime = rule.StartTime
-	ruleResult.EndTime = rule.EndTime
+	ruleResult.StartWeek = rule.StartWeek
+	ruleResult.StartHour = rule.StartHour
+	ruleResult.EndWeek = rule.EndWeek
+	ruleResult.EndHour = rule.EndHour
 
 	json.Unmarshal([]byte(rule.Reporters), &ruleResult.Reporters)
 	return ruleResult

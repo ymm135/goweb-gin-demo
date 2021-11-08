@@ -20,4 +20,8 @@ type GetAuthorityId struct {
 	AuthorityId string `json:"authorityId" form:"authorityId"` // 角色ID
 }
 
+type GetByUserID struct {
+	UserId uint `json:"userId" form:"userId"`
+}
+
 type Empty struct{}

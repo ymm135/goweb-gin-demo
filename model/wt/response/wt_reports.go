@@ -2,21 +2,22 @@ package response
 
 import (
 	"goweb-gin-demo/global"
+	"goweb-gin-demo/model/common"
 	"goweb-gin-demo/model/wt"
 )
 
-
-type WtReportsResult struct{
+type WtReportsResult struct {
 	global.GLOBAL_MODEL
 	WtReportInfo
 }
 
 type WtReportInfo struct {
-	UserName string `json:"userName"`
-	SendTo []wt.UserInfo `json:"sendTo"`
-	Header string `json:"header"`
-	Contents []wt.Contents `json:"contents"`
-	Pictures []wt.UploadFileJson `json:"pictures"`
+	UserName    string              `json:"userName"`
+	UserId      int                 `json:"userId"`
+	SendTo      []common.UserInfo   `json:"sendTo"`
+	Header      string              `json:"header"`
+	Contents    []wt.Contents       `json:"contents"`
+	Pictures    []wt.UploadFileJson `json:"pictures"`
 	Attachments []wt.UploadFileJson `json:"attachments"`
 }
 

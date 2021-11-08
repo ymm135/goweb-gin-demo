@@ -43,7 +43,7 @@ func (wtReportsService *WtReportsService) GetWtReports(id uint) (err error, repo
 }
 
 // GetWtReportsInfoList 分页获取周报
-func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtReportsSearch) (err error, list interface{}, total int64) {
+func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtReportsSearch) (err error, list []wtRes.WtReportsSearchResult, total int64) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
 
@@ -53,7 +53,6 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 	if err != nil {
 		return
 	}
-
 
 	var reportsSearchBOList []wtRes.WtReportsSearchBO
 
@@ -65,10 +64,10 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 	var reportIds []uint
 	reportTable.Select("`id`", offset, limit).Offset(offset).Limit(limit).Scan(&reportIds)
 
-	querySql := "SELECT id, user_name, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count "+
-		"FROM wt_reports "+
-		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments WHERE report_id in ? GROUP BY report_id) as cmc "+
-		"on cmc.report_id = wt_reports.id "+
+	querySql := "SELECT id, user_name, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count " +
+		"FROM wt_reports " +
+		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments WHERE report_id in ? GROUP BY report_id) as cmc " +
+		"on cmc.report_id = wt_reports.id " +
 		"WHERE 1=1 "
 
 	// 条件高级查询
@@ -81,12 +80,11 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 	}
 
 	if len(info.StartTime) != 0 && len(info.EndTime) != 0 {
-		querySql += "  and created_at >= '" + info.StartTime + "' and created_at <= '"+ info.EndTime + "'"
+		querySql += "  and created_at >= '" + info.StartTime + "' and created_at <= '" + info.EndTime + "'"
 	}
 
 	querySql += " LIMIT ? OFFSET ? "
-	err = global.GLOBAL_DB.Raw( querySql, reportIds, limit, offset).Scan(&reportsSearchBOList).Error
-
+	err = global.GLOBAL_DB.Raw(querySql, reportIds, limit, offset).Scan(&reportsSearchBOList).Error
 
 	reportsSearchResultList := reportsToSearchResult(reportsSearchBOList)
 
@@ -103,6 +101,7 @@ func voToRrports(reportsVO wtReq.WtReportsVO) wt.WtReports {
 	wtReports := wt.WtReports{
 		GLOBAL_MODEL: global.GLOBAL_MODEL{ID: reportsVO.ID},
 		UserName:     reportsVO.UserName,
+		UserId:       reportsVO.UserId,
 		SendTo:       string(sendToJson),
 		Header:       reportsVO.Header,
 		Contents:     string(contentJson),
@@ -128,6 +127,7 @@ func reportToSearchResult(searchBO wtRes.WtReportsSearchBO) wtRes.WtReportsSearc
 	searchResult.GLOBAL_MODEL = searchBO.GLOBAL_MODEL
 
 	searchResult.UserName = searchBO.UserName
+	searchResult.UserId = searchBO.UserId
 	searchResult.Header = searchBO.Header
 	searchResult.CommentCount = searchBO.CommentCount
 
@@ -154,10 +154,19 @@ func reportToVO(report wt.WtReports) wtRes.WtReportsResult {
 	reportVO.GLOBAL_MODEL = report.GLOBAL_MODEL
 
 	reportVO.UserName = report.UserName
+	reportVO.UserId = report.UserId
 	reportVO.Header = report.Header
 	json.Unmarshal([]byte(report.SendTo), &reportVO.SendTo)
 	json.Unmarshal([]byte(report.Contents), &reportVO.Contents)
 	json.Unmarshal([]byte(report.Pictures), &reportVO.Pictures)
 	json.Unmarshal([]byte(report.Attachments), &reportVO.Attachments)
 	return reportVO
+}
+
+func (wtReportsService *WtReportsService) getWtReportListForStat(statData wt.StatDataSearch) (err error, userIds []int){
+	var commitUserIds []int
+	sql := "created_at >= '" + statData.StartTime + "' and created_at <= '" + statData.EndTime + "' and user_id in ? "
+	err = global.GLOBAL_DB.Model(&wt.WtReports{}).Select("user_id").Where(sql, statData.UserIds).Scan(&commitUserIds).Error
+
+	return err, commitUserIds
 }

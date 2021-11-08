@@ -5,4 +5,5 @@ type WtServiceGroup struct {
 	WtTemplateService
 	WtCommentService
 	WtRuleService
+	WtOutputService
 }

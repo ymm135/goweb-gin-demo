@@ -5,14 +5,14 @@ import (
 	"goweb-gin-demo/model/wt"
 )
 
-type WtTemplateSearch struct{
+type WtTemplateSearch struct {
 	wt.WtReports
 	request.PageInfo
 }
 
-type WtTemplateRes struct{
-	ID uint
-	UserName string `json:"userName"`
-	Header string `json:"header"`
+type WtTemplateRes struct {
+	ID       uint          `json:"id" form:"id"`
+	UserName string        `json:"userName"`
+	Header   string        `json:"header"`
 	Contents []wt.Contents `json:"contents"`
 }

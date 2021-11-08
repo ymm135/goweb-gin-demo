@@ -43,6 +43,7 @@ func Routers() *gin.Engine {
 		RouterGroup.InitAuthorityRouter(PrivateGroup)
 		RouterGroup.InitWtReportsRouter(PrivateGroup)
 		RouterGroup.InitWtRuleRouter(PrivateGroup)
+		RouterGroup.InitWtOutputRouter(PrivateGroup)
 	}
 
 	global.GLOBAL_LOG.Info("router register success")

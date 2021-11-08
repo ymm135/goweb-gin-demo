@@ -11,5 +11,4 @@ type WtTemplateResult struct{
 	UserName string `json:"userName"`
 	Header string `json:"header"`
 	Contents []wt.Contents `json:"contents"`
-
 }

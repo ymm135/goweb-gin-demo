@@ -1572,6 +1572,40 @@ var doc = `{
                 }
             }
         },
+        "/wtOutput/GetStatResult": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtOutput"
+                ],
+                "summary": "根据用户id查询统计结果",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "userId",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/wtReports/createWtReports": {
             "post": {
                 "security": [
@@ -1920,8 +1954,13 @@ var doc = `{
                         "in": "query"
                     },
                     {
-                        "type": "string",
-                        "name": "endTime",
+                        "type": "integer",
+                        "name": "endHour",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "endWeek",
                         "in": "query"
                     },
                     {
@@ -1948,8 +1987,13 @@ var doc = `{
                         "in": "query"
                     },
                     {
-                        "type": "string",
-                        "name": "startTime",
+                        "type": "integer",
+                        "name": "startHour",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "startWeek",
                         "in": "query"
                     },
                     {
@@ -2197,6 +2241,11 @@ var doc = `{
                         "in": "query"
                     },
                     {
+                        "type": "integer",
+                        "name": "userId",
+                        "in": "query"
+                    },
+                    {
                         "type": "string",
                         "name": "userName",
                         "in": "query"
@@ -2252,6 +2301,17 @@ var doc = `{
         }
     },
     "definitions": {
+        "common.UserInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "config.AliyunOSS": {
             "type": "object",
             "properties": {
@@ -2835,8 +2895,11 @@ var doc = `{
                 "sendTo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/wt.UserInfo"
+                        "$ref": "#/definitions/common.UserInfo"
                     }
+                },
+                "userId": {
+                    "type": "integer"
                 },
                 "userName": {
                     "type": "string"
@@ -2846,8 +2909,11 @@ var doc = `{
         "request.WtRuleRes": {
             "type": "object",
             "properties": {
-                "endTime": {
-                    "type": "string"
+                "endHour": {
+                    "type": "integer"
+                },
+                "endWeek": {
+                    "type": "integer"
                 },
                 "id": {
                     "type": "integer"
@@ -2855,11 +2921,14 @@ var doc = `{
                 "reporters": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/common.UserInfo"
                     }
                 },
-                "startTime": {
-                    "type": "string"
+                "startHour": {
+                    "type": "integer"
+                },
+                "startWeek": {
+                    "type": "integer"
                 },
                 "userId": {
                     "type": "integer"
@@ -3116,17 +3185,6 @@ var doc = `{
             "properties": {
                 "key": {
                     "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "wt.UserInfo": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
                 },
                 "name": {
                     "type": "string"

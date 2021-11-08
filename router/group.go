@@ -16,6 +16,7 @@ type RouterGroup struct {
 
 	wt.WtReportsRouter
 	wt.WtRuleRouter
+	wt.WtOutputRouter
 }
 
 var RouterGroupApp = new(RouterGroup)

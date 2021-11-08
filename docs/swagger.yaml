@@ -1,4 +1,11 @@
 definitions:
+  common.UserInfo:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
   config.AliyunOSS:
     properties:
       accessKeyId:
@@ -403,23 +410,29 @@ definitions:
         type: array
       sendTo:
         items:
-          $ref: '#/definitions/wt.UserInfo'
+          $ref: '#/definitions/common.UserInfo'
         type: array
+      userId:
+        type: integer
       userName:
         type: string
     type: object
   request.WtRuleRes:
     properties:
-      endTime:
-        type: string
+      endHour:
+        type: integer
+      endWeek:
+        type: integer
       id:
         type: integer
       reporters:
         items:
-          type: string
+          $ref: '#/definitions/common.UserInfo'
         type: array
-      startTime:
-        type: string
+      startHour:
+        type: integer
+      startWeek:
+        type: integer
       userId:
         type: integer
     type: object
@@ -599,13 +612,6 @@ definitions:
     properties:
       key:
         type: string
-      name:
-        type: string
-    type: object
-  wt.UserInfo:
-    properties:
-      id:
-        type: integer
       name:
         type: string
     type: object
@@ -1568,6 +1574,26 @@ paths:
       summary: 更新周报评论
       tags:
       - WtComment
+  /wtOutput/GetStatResult:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: userId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 根据用户id查询统计结果
+      tags:
+      - WtOutput
   /wtReports/createWtReports:
     post:
       consumes:
@@ -1774,8 +1800,11 @@ paths:
         name: createdAt
         type: string
       - in: query
-        name: endTime
-        type: string
+        name: endHour
+        type: integer
+      - in: query
+        name: endWeek
+        type: integer
       - description: 主键ID
         in: query
         name: id
@@ -1792,8 +1821,11 @@ paths:
         name: reporters
         type: string
       - in: query
-        name: startTime
-        type: string
+        name: startHour
+        type: integer
+      - in: query
+        name: startWeek
+        type: integer
       - description: 更新时间
         in: query
         name: updatedAt
@@ -1943,6 +1975,9 @@ paths:
         in: query
         name: updatedAt
         type: string
+      - in: query
+        name: userId
+        type: integer
       - in: query
         name: userName
         type: string
