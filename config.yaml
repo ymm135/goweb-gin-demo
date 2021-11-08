@@ -57,6 +57,9 @@ mysql:
 local:
   path: '/Users/zero/Documents/uploads/file'
 
+excel:
+  dir: '/Users/zero/Documents/excel/file'
+
 # timer task db clear table
 Timer:
   start: true

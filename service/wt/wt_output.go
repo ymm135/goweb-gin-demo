@@ -1,17 +1,20 @@
 package wt
 
 import (
+	"errors"
+	"fmt"
+	"github.com/xuri/excelize/v2"
 	"goweb-gin-demo/model/common"
 	"goweb-gin-demo/model/common/request"
 	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
 	wtRes "goweb-gin-demo/model/wt/response"
 	"goweb-gin-demo/utils"
+	"jaytaylor.com/html2text"
 )
 
 type WtOutputService struct {
 }
-
 
 // GetWtRule 根据id获取WtRule记录
 func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID) (err error, wtRule wtRes.StatResult) {
@@ -66,7 +69,7 @@ func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID
 
 		if isCommit {
 			commitedList = append(commitedList, needCommitPeoples)
-		}else {
+		} else {
 			uncommitedList = append(uncommitedList, needCommitPeoples)
 		}
 	}
@@ -78,4 +81,61 @@ func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID
 	statResult.UncommitPeoples = uncommitedList
 
 	return err, statResult
+}
+
+func (wtOutputService *WtOutputService) ExportReportToExcel(info wt.StatDataSearch, excelPath string) (err error) {
+	var WtServiceGroup WtServiceGroup
+	err, reportResultList := WtServiceGroup.WtReportsService.getWtReportListForExcel(info)
+
+	if err != nil {
+		return err
+	}
+
+	if len(reportResultList) == 0 {
+		return errors.New("没有任何数据可以导出!")
+	}
+
+	excel := excelize.NewFile()
+
+	var titles []string
+	titles = append(titles, "序号")
+	titles = append(titles, "标题")
+	titles = append(titles, "用户名")
+
+	for _, content := range reportResultList[0].Contents {
+		titles = append(titles, content.Title)
+	}
+
+	titles = append(titles, "创建时间")
+	titles = append(titles, "更新时间")
+
+	//sheetName := reportResultList[0].Header
+
+	excel.SetSheetRow("Sheet1", "A1", &titles)
+
+	for i, report := range reportResultList {
+		axis := fmt.Sprintf("A%d", i+2)
+
+		var excelContent []interface{}
+		excelContent = append(excelContent, i + 1)
+		excelContent = append(excelContent, report.Header)
+		excelContent = append(excelContent, report.UserName)
+
+		for _, content := range report.Contents {
+			fromString, err := html2text.FromString(content.Content,  html2text.Options{TextOnly: true})
+			if err != nil {
+				return err
+			}
+
+			excelContent = append(excelContent, fromString)
+		}
+
+		excelContent = append(excelContent, report.CreatedAt)
+		excelContent = append(excelContent, report.UpdatedAt)
+
+		excel.SetSheetRow("Sheet1", axis, &excelContent)
+	}
+	err = excel.SaveAs(excelPath)
+
+	return err
 }

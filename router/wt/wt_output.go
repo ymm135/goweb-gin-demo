@@ -16,6 +16,7 @@ func (s *WtOutputRouter) InitWtOutputRouter(Router *gin.RouterGroup) {
 	{
 	}
 	{
-		wtOutputRouterWithoutRecord.GET("GetStatResult", wtOutputApi.GetStatResult)        // 根据用户ID获取统计规则
+		wtOutputRouterWithoutRecord.GET("GetStatResult", wtOutputApi.GetStatResult)             // 根据用户ID获取统计规则
+		wtOutputRouterWithoutRecord.GET("ExportReportToExcel", wtOutputApi.ExportReportToExcel) // 把周报导出为excel
 	}
 }

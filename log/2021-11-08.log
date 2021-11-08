@@ -43,3 +43,33 @@
 [goweb-demo]2021/11/08 - 15:04:15.665	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
 [goweb-demo]2021/11/08 - 15:06:04.502	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
 [goweb-demo]2021/11/08 - 15:06:04.503	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 16:59:07.992	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 16:59:07.994	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:00:53.203	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/08 - 17:01:02.154	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:01:02.155	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:04:01.473	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:04:01.474	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:04:07.980	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/wt/wt_output.go:55	导出失败!	{"err": "没有任何数据可以导出!"}
+[goweb-demo]2021/11/08 - 17:05:12.717	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:05:12.718	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:05:20.867	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/wt/wt_output.go:55	导出失败!	{"err": "没有任何数据可以导出!"}
+[goweb-demo]2021/11/08 - 17:06:59.737	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/api/wt/wt_output.go:55	导出失败!	{"err": "没有任何数据可以导出!"}
+[goweb-demo]2021/11/08 - 17:21:09.461	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:21:09.466	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:21:19.000	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:21:19.001	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:21:38.932	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:21:38.933	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:23:05.424	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:23:05.427	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:33:29.526	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:33:29.528	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:35:00.761	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:35:00.763	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:46:12.004	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:46:12.006	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:50:47.429	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:50:47.430	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/08 - 17:52:28.094	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/08 - 17:52:28.095	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}

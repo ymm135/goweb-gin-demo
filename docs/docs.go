@@ -1572,6 +1572,53 @@ var doc = `{
                 }
             }
         },
+        "/wtOutput/ExportReportToExcel": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "WtOutput"
+                ],
+                "summary": "把周报导出为excel",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "endTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "startTime",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "name": "userIds",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"导出成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/wtOutput/GetStatResult": {
             "get": {
                 "security": [
@@ -1739,6 +1786,11 @@ var doc = `{
                         "type": "string",
                         "example": "xx项目",
                         "name": "content",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "currUserId",
                         "in": "query"
                     },
                     {

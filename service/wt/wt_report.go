@@ -163,10 +163,42 @@ func reportToVO(report wt.WtReports) wtRes.WtReportsResult {
 	return reportVO
 }
 
-func (wtReportsService *WtReportsService) getWtReportListForStat(statData wt.StatDataSearch) (err error, userIds []int){
+func (wtReportsService *WtReportsService) getWtReportListForStat(statData wt.StatDataSearch) (err error, userIds []int) {
 	var commitUserIds []int
 	sql := "created_at >= '" + statData.StartTime + "' and created_at <= '" + statData.EndTime + "' and user_id in ? "
 	err = global.GLOBAL_DB.Model(&wt.WtReports{}).Select("user_id").Where(sql, statData.UserIds).Scan(&commitUserIds).Error
 
 	return err, commitUserIds
+}
+
+func (wtReportsService *WtReportsService) getWtReportListForExcel(statData wt.StatDataSearch) (err error, result []wtRes.WtReportsResult) {
+	var wtReportList []wt.WtReports
+
+	condition := " 1=1 "
+	if len(statData.StartTime) != 0 {
+		condition += "and created_at >= '" + statData.StartTime + "'"
+	}
+
+	if len(statData.EndTime) != 0 {
+		condition += "and created_at <= '" + statData.EndTime + "'"
+	}
+
+	if len(statData.UserIds) != 0 {
+		userIdStr := "( "
+		for i, id := range statData.UserIds {
+			if i < (len(statData.UserIds) - 1) {
+				userIdStr += strconv.Itoa(id) + ", "
+			} else {
+				userIdStr += strconv.Itoa(id)
+			}
+		}
+		userIdStr += " )"
+		condition += " and user_id in " + userIdStr
+	}
+
+	err = global.GLOBAL_DB.Model(&wt.WtReports{}).Where(condition).Scan(&wtReportList).Error
+
+	reportsResults := reportsToVOs(wtReportList)
+
+	return err, reportsResults
 }

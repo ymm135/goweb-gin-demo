@@ -1574,6 +1574,34 @@ paths:
       summary: 更新周报评论
       tags:
       - WtComment
+  /wtOutput/ExportReportToExcel:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: endTime
+        type: string
+      - in: query
+        name: startTime
+        type: string
+      - in: query
+        items:
+          type: integer
+        name: userIds
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"导出成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 把周报导出为excel
+      tags:
+      - WtOutput
   /wtOutput/GetStatResult:
     get:
       consumes:
@@ -1670,6 +1698,9 @@ paths:
         in: query
         name: content
         type: string
+      - in: query
+        name: currUserId
+        type: integer
       - in: query
         name: endTime
         type: string
