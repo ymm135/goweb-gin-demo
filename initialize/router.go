@@ -29,6 +29,7 @@ func Routers() *gin.Engine {
 	}
 	{
 		RouterGroup.InitBaseRouter(PublicGroup)
+		RouterGroup.InitFileUploadAndDownloadRouter(PublicGroup) // 文件上传及下载不需要校验
 	}
 
 	PrivateGroup := Router.Group("")
@@ -39,7 +40,6 @@ func Routers() *gin.Engine {
 		RouterGroup.InitUserRouter(PrivateGroup)
 		RouterGroup.InitMenuRouter(PrivateGroup)
 		RouterGroup.InitSystemRouter(PrivateGroup)
-		RouterGroup.InitFileUploadAndDownloadRouter(PrivateGroup)
 		RouterGroup.InitAuthorityRouter(PrivateGroup)
 		RouterGroup.InitWtReportsRouter(PrivateGroup)
 		RouterGroup.InitWtRuleRouter(PrivateGroup)
