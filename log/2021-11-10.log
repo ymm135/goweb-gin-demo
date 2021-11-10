@@ -1,0 +1,23 @@
+[goweb-demo]2021/11/10 - 10:56:35.664	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 10:56:35.667	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 11:00:35.952	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/10 - 11:00:55.329	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 11:00:55.330	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 11:03:58.651	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 11:03:58.653	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 11:07:46.066	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49	router register success
+goweb-gin-demo/initialize.Routers
+	/Users/zero/work/mygithub/goweb-gin-demo/initialize/router.go:49
+goweb-gin-demo/core.RunServer
+	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:22
+main.main
+	/Users/zero/work/mygithub/goweb-gin-demo/main.go:15
+runtime.main
+	/Users/zero/go/sdk/go1.16.9/src/runtime/proc.go:225
+[goweb-demo]2021/11/10 - 11:07:46.070	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+goweb-gin-demo/core.RunServer
+	/Users/zero/work/mygithub/goweb-gin-demo/core/server.go:31
+main.main
+	/Users/zero/work/mygithub/goweb-gin-demo/main.go:15
+runtime.main
+	/Users/zero/go/sdk/go1.16.9/src/runtime/proc.go:225

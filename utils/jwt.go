@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"goweb-gin-demo/global"
-	"goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/model/system/request"
 )
 
 type JWT struct {

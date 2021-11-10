@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/response"
-	"goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/model/system/request"
 	"goweb-gin-demo/service"
 )
 

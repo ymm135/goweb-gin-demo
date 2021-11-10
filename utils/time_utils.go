@@ -12,7 +12,7 @@ func GetTimeFromWeek(week int, hour int) string {
 	}
 
 	//目前offset是周一的,如果计算周几的，偏移量
-	offset = week - offset - 1
+	offset = (week - 1) + offset
 
 	date := time.Date(now.Year(), now.Month(), now.Day(), hour, 0, 0, 0, time.Local).
 		AddDate(0, 0, offset)

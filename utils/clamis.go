@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	uuid "github.com/satori/go.uuid"
 	"goweb-gin-demo/global"
-	systemReq "goweb-gin-demo/model/web/request"
+	systemReq "goweb-gin-demo/model/system/request"
 )
 
 // 从Gin的Context中获取从jwt解析出来的用户ID

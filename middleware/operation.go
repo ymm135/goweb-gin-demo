@@ -11,8 +11,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"goweb-gin-demo/global"
-	"goweb-gin-demo/model/web"
-	"goweb-gin-demo/model/web/request"
+	"goweb-gin-demo/model/system"
+	"goweb-gin-demo/model/system/request"
 )
 
 var operationRecordService = service.ServiceGroupApp.SystemServiceGroup.OperationRecordService
@@ -40,7 +40,7 @@ func OperationRecord() gin.HandlerFunc {
 			}
 			userId = id
 		}
-		record := web.SysOperationRecord{
+		record := system.SysOperationRecord{
 			Ip:     c.ClientIP(),
 			Method: c.Request.Method,
 			Path:   c.Request.URL.Path,

@@ -10,7 +10,7 @@ import (
 	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/response"
-	"goweb-gin-demo/model/web"
+	"goweb-gin-demo/model/system"
 )
 
 var jwtService = service.ServiceGroupApp.SystemServiceGroup.JwtService
@@ -59,7 +59,7 @@ func JWTAuth() gin.HandlerFunc {
 				if err != nil {
 					global.GLOBAL_LOG.Error("get redis jwt failed", zap.Any("err", err))
 				} else { // 当之前的取成功时才进行拉黑操作
-					_ = jwtService.JsonInBlacklist(web.JwtBlacklist{Jwt: RedisJwtToken})
+					_ = jwtService.JsonInBlacklist(system.JwtBlacklist{Jwt: RedisJwtToken})
 				}
 				// 无论如何都要记录当前的活跃状态
 				_ = jwtService.SetRedisJWT(newToken, newClaims.Username)

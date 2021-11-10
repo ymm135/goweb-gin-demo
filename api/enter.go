@@ -1,12 +1,12 @@
 package api
 
 import (
-	"goweb-gin-demo/api/web"
+	"goweb-gin-demo/api/system"
 	"goweb-gin-demo/api/wt"
 )
 
 type ApiGroup struct {
-	ApiGroup   web.ApiGroup
+	ApiGroup       system.ApiGroup
 	WtServiceGroup wt.ApiWtGroup
 }
 
