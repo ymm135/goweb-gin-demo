@@ -62,13 +62,32 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 
 	//首选获取周报的ids
 	var reportIds []uint
-	reportTable.Select("`id`", offset, limit).Offset(offset).Limit(limit).Scan(&reportIds)
+	reportTable.Select("id").Offset(offset).Limit(limit).Scan(&reportIds)
 
-	querySql := "SELECT id, user_name, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count " +
+	querySql := "SELECT id, user_name, user_id, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count " +
 		"FROM wt_reports " +
 		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments WHERE report_id in ? GROUP BY report_id) as cmc " +
 		"on cmc.report_id = wt_reports.id " +
 		"WHERE 1=1 "
+
+	if info.CurrUserId > 0 {
+		//查询当前user的统计规则
+		var WtServiceGroup WtServiceGroup
+		err, ruleRes := WtServiceGroup.WtRuleService.GetWtRuleByUserId(info.CurrUserId)
+
+		reportUserIds := " ( "
+		if err == nil {
+			reportUserList := ruleRes.Reporters
+
+			for _, report := range reportUserList {
+				reportUserIds += strconv.Itoa(int(report.ID)) + ", "
+			}
+		}
+
+		reportUserIds += strconv.Itoa(int(info.CurrUserId)) + " ) "
+
+		querySql += " and user_id in " + reportUserIds
+	}
 
 	// 条件高级查询
 	if info.UserId > 0 {

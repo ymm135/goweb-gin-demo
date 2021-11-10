@@ -19,23 +19,21 @@ type WtOutputService struct {
 // GetWtRule 根据id获取WtRule记录
 func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID) (err error, wtRule wtRes.StatResult) {
 	//首先查询要统计的人
-	ruleInfo := wtReq.WtRuleSearch{}
-	ruleInfo.UserId = int(idInfo.UserId)
+
 	var WtServiceGroup WtServiceGroup
-	err, wtRuleResultList, _ := WtServiceGroup.WtRuleService.GetWtRuleInfoList(ruleInfo)
+	err, ruleResult := WtServiceGroup.WtRuleService.GetWtRuleByUserId(idInfo.UserId)
 	if err != nil {
 		return err, wtRes.StatResult{}
 	}
 
-	wtRuleResult := wtRuleResultList[0]
 
 	//计算起始时间 起始时间是 5-0900 7-1000
 
-	startTime := utils.GetTimeFromWeek(wtRuleResult.StartWeek, wtRuleResult.StartHour)
-	endTime := utils.GetTimeFromWeek(wtRuleResult.EndWeek, wtRuleResult.EndHour)
+	startTime := utils.GetTimeFromWeek(ruleResult.StartWeek, ruleResult.StartHour)
+	endTime := utils.GetTimeFromWeek(ruleResult.EndWeek, ruleResult.EndHour)
 
 	//在周报表中进行统计
-	reports := wtRuleResult.Reporters
+	reports := ruleResult.Reporters
 	var reportSearch wtReq.WtReportsSearch
 	reportSearch.StartTime = startTime
 	reportSearch.EndTime = endTime

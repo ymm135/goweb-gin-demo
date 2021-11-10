@@ -21,3 +21,23 @@ main.main
 	/Users/zero/work/mygithub/goweb-gin-demo/main.go:15
 runtime.main
 	/Users/zero/go/sdk/go1.16.9/src/runtime/proc.go:225
+[goweb-demo]2021/11/10 - 16:57:19.765	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 16:57:19.767	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 17:26:39.999	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 17:26:40.001	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 17:27:01.783	[31merror[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/api/wt/wt_reports.go:112	获取失败!	{"err": "Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[ 1, 2, 5, 1 ]  LIMIT ? OFFSET ?' at line 1; Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[ 1, 2, 5, 1 ]  LIMIT ? OFFSET ?' at line 1"}
+[goweb-demo]2021/11/10 - 17:29:35.409	[31merror[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/10 - 17:29:47.850	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 17:29:47.852	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 17:33:16.947	[31merror[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/10 - 17:33:28.565	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 17:33:28.566	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 18:07:58.172	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 18:07:58.174	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 18:08:45.860	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 18:08:45.861	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 18:45:34.852	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 18:45:34.853	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/10 - 18:47:31.305	[31merror[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/10 - 18:47:42.710	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/initialize/router.go:49	router register success
+[goweb-demo]2021/11/10 - 18:47:42.711	[34minfo[0m	/Users/zero/work/mygithub/run_goweb-gin-demo/core/server.go:31	server run success on 	{"address": ":8889"}

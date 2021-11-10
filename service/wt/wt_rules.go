@@ -38,6 +38,14 @@ func (wtRuleService *WtRuleService) GetWtRule(id uint) (err error, wtRule wt.WtR
 	return
 }
 
+// GetWtRule 根据user_id获取WtRule记录
+func (wtRuleService *WtRuleService) GetWtRuleByUserId(userId uint) (err error, result wtRes.WtRuleResult) {
+	var wtRule wt.WtRule
+	err = global.GLOBAL_DB.Where("user_id = ?", userId).First(&wtRule).Error
+	result = ruleToResult(wtRule)
+	return
+}
+
 // GetWtRuleInfoList 分页获取WtRule记录
 func (wtRuleService *WtRuleService) GetWtRuleInfoList(info wtReq.WtRuleSearch) (err error, list []wtRes.WtRuleResult, total int64) {
 	limit := info.PageSize
