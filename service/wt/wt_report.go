@@ -91,7 +91,7 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 
 	// 条件高级查询
 	if info.UserId > 0 {
-		querySql += " and id = " + strconv.Itoa(int(info.UserId))
+		querySql += " and user_id = " + strconv.Itoa(int(info.UserId))
 	}
 
 	if len(info.Content) != 0 {
