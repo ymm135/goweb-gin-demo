@@ -5,6 +5,7 @@ type SysMenu struct {
 	MenuId      string                 `json:"menuId" gorm:"comment:菜单ID"`
 	AuthorityId string                 `json:"-" gorm:"comment:角色ID"`
 	Children    []SysMenu              `json:"children" gorm:"-"`
+	Icon        string                 `json:"icon"`
 	Parameters  []SysBaseMenuParameter `json:"parameters" gorm:"foreignKey:SysBaseMenuID;references:MenuId"`
 }
 
