@@ -52,6 +52,12 @@ func (wtCommentService *WtCommentService)GetWtCommentInfoList(info wtReq.WtComme
 	if err!=nil {
     	return
     }
-	err = db.Limit(limit).Offset(offset).Find(&wtComments).Error
+
+    if info.ReportId > 0 {
+		err = db.Where("report_id=?", info.ReportId).Limit(limit).Offset(offset).Find(&wtComments).Error
+	}else {
+		err = db.Limit(limit).Offset(offset).Find(&wtComments).Error
+	}
+
 	return err, wtComments, total
 }
