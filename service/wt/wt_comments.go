@@ -54,9 +54,9 @@ func (wtCommentService *WtCommentService)GetWtCommentInfoList(info wtReq.WtComme
     }
 
     if info.ReportId > 0 {
-		err = db.Where("report_id=?", info.ReportId).Limit(limit).Offset(offset).Find(&wtComments).Error
+		err = db.Where("report_id=?", info.ReportId).Limit(limit).Offset(offset).Order("created_at desc").Find(&wtComments).Error
 	}else {
-		err = db.Limit(limit).Offset(offset).Find(&wtComments).Error
+		err = db.Limit(limit).Offset(offset).Order("created_at desc").Find(&wtComments).Error
 	}
 
 	return err, wtComments, total

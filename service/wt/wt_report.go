@@ -60,33 +60,14 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 		limit = int(total)
 	}
 
-	//首选获取周报的ids
-	var reportIds []uint
-	reportTable.Select("id").Offset(offset).Limit(limit).Scan(&reportIds)
-
 	querySql := "SELECT id, user_name, user_id, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count " +
 		"FROM wt_reports " +
-		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments WHERE report_id in ? GROUP BY report_id) as cmc " +
+		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments GROUP BY report_id) as cmc " +
 		"on cmc.report_id = wt_reports.id " +
 		"WHERE 1=1 "
 
 	if info.CurrUserId > 0 {
-		//查询当前user的统计规则
-		var WtServiceGroup WtServiceGroup
-		err, ruleRes := WtServiceGroup.WtRuleService.GetWtRuleByUserId(info.CurrUserId)
-
-		reportUserIds := " ( "
-		if err == nil {
-			reportUserList := ruleRes.Reporters
-
-			for _, report := range reportUserList {
-				reportUserIds += strconv.Itoa(int(report.ID)) + ", "
-			}
-		}
-
-		reportUserIds += strconv.Itoa(int(info.CurrUserId)) + " ) "
-
-		querySql += " and user_id in " + reportUserIds
+		querySql += " and send_to LIKE '%\"id\":" + strconv.Itoa(int(info.CurrUserId)) + "%'"
 	}
 
 	// 条件高级查询
@@ -102,8 +83,8 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 		querySql += "  and created_at >= '" + info.StartTime + "' and created_at <= '" + info.EndTime + "'"
 	}
 
-	querySql += " LIMIT ? OFFSET ? "
-	err = global.GLOBAL_DB.Raw(querySql, reportIds, limit, offset).Scan(&reportsSearchBOList).Error
+	querySql += "ORDER BY created_at DESC LIMIT ? OFFSET ? "
+	err = global.GLOBAL_DB.Raw(querySql, limit, offset).Scan(&reportsSearchBOList).Error
 
 	reportsSearchResultList := reportsToSearchResult(reportsSearchBOList)
 
