@@ -1,0 +1,7 @@
+[goweb-demo]2021/11/15 - 20:49:32.896	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2021/11/15 - 20:49:32.897	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/15 - 20:49:55.544	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:38	accept tcp [::]:8888: use of closed network connection
+[goweb-demo]2021/11/15 - 14:18:29.534	[34minfo[0m	/usr/local/weekly_report/initialize/router.go:49	router register success
+[goweb-demo]2021/11/15 - 14:18:29.564	[34minfo[0m	/usr/local/weekly_report/core/server.go:31	server run success on 	{"address": ":8888"}
+[goweb-demo]2021/11/15 - 14:21:49.964	[34minfo[0m	/usr/local/weekly_report/initialize/router.go:49	router register success
+[goweb-demo]2021/11/15 - 14:21:49.984	[34minfo[0m	/usr/local/weekly_report/core/server.go:31	server run success on 	{"address": ":8888"}
