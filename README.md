@@ -1,4 +1,12 @@
 # 目录
+- docker 安装  
+```
+  cd docker && docker-compose up -d  
+```
+
+运行界面截图:  
+
+
 - [goweb-gin-demo](#goweb-gin-demo)
 - [web框架gin](#web框架gin)
     - [特性](#特性)
@@ -26,7 +34,7 @@
     - [查看http请求详情](#查看http请求详情)
   
 # goweb-gin-demo
-go web脚手架, [数据库及表结构](./resource/sql/weekly_report.sql)  
+go web脚手架, [数据库及表结构](server/resource/sql/weekly_report.sql)  
 
 # [web框架gin](https://gin-gonic.com/zh-cn/docs/introduction/) 
 [中文参考文档](https://www.kancloud.cn/shuangdeyu/gin_book/949411) 
@@ -377,14 +385,14 @@ docs/
 jwt token  
 <br>
 <div align=center>
-<img src="./resource/md_res/jwt.png" width="60%" height="60%" title="JWT Token"></img>
+<img src="server/resource/md_res/jwt.png" width="60%" height="60%" title="JWT Token"></img>
 </div>
 
 <br>
 **用户-角色权限-菜单项|API|资源对应关系图**   
 <br>
    
-![用户授权](./resource/md_res/user-auth.jpg)  
+![用户授权](server/resource/md_res/user-auth.jpg)  
 
 
 # 获取菜单项
@@ -658,7 +666,7 @@ Casbin is a powerful and efficient open-source access control library. It provid
 
 可以 [在线](https://casbin.org/editor/) 书写规则:    
 
-![在线写casbin规则](./resource/md_res/casbin.png)  
+![在线写casbin规则](server/resource/md_res/casbin.png)  
 
 创建一个Casbin enforcer  
 ```
@@ -914,7 +922,7 @@ Sets the location for time.Time values (when using parseTime=true). "Local" sets
 
 <br>
 <div align=center>
-<img src="./resource/md_res/gin-http-res.jpg" width="70%" height="70%" title="Go Http请求"></img>
+<img src="server/resource/md_res/gin-http-res.jpg" width="70%" height="70%" title="Go Http请求"></img>
 </div>
 <br>  
 
