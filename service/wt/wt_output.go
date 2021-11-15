@@ -128,8 +128,8 @@ func (wtOutputService *WtOutputService) ExportReportToExcel(info wt.StatDataSear
 			excelContent = append(excelContent, fromString)
 		}
 
-		excelContent = append(excelContent, report.CreatedAt)
-		excelContent = append(excelContent, report.UpdatedAt)
+		excelContent = append(excelContent, report.CreatedAt.String())
+		excelContent = append(excelContent, report.UpdatedAt.String())
 
 		excel.SetSheetRow("Sheet1", axis, &excelContent)
 	}

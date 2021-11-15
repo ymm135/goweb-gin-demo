@@ -49,41 +49,45 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 
 	reportTable := global.GLOBAL_DB.Table("wt_reports")
 
-	err = reportTable.Count(&total).Error
-	if err != nil {
-		return
-	}
-
 	var reportsSearchBOList []wtRes.WtReportsSearchBO
-
-	if info.Page == 0 {
-		limit = int(total)
-	}
 
 	querySql := "SELECT id, user_name, user_id, send_to, header, contents, pictures, attachments, created_at, updated_at, cmc.comment_count " +
 		"FROM wt_reports " +
 		"left join (SELECT report_id, count(report_id) as comment_count FROM wt_comments GROUP BY report_id) as cmc " +
 		"on cmc.report_id = wt_reports.id " +
-		"WHERE 1=1 "
+		"WHERE "
+	condition := " 1=1 "
 
 	if info.CurrUserId > 0 {
-		querySql += " and send_to LIKE '%\"id\":" + strconv.Itoa(int(info.CurrUserId)) + "%'"
+		condition += " and send_to LIKE '%\"id\":" + strconv.Itoa(int(info.CurrUserId)) + "%'"
 	}
 
 	// 条件高级查询
 	if info.UserId > 0 {
-		querySql += " and user_id = " + strconv.Itoa(int(info.UserId))
+		condition += " and user_id = " + strconv.Itoa(int(info.UserId))
+	}else {
+		condition += " OR user_id = " + strconv.Itoa(int(info.CurrUserId)) + " "
 	}
 
 	if len(info.Content) != 0 {
-		querySql += "  and contents LIKE '%" + info.Content + "%'"
+		condition += "  and contents LIKE '%" + info.Content + "%'"
 	}
 
 	if len(info.StartTime) != 0 && len(info.EndTime) != 0 {
-		querySql += "  and created_at >= '" + info.StartTime + "' and created_at <= '" + info.EndTime + "'"
+		condition += "  and created_at >= '" + info.StartTime + "' and created_at <= '" + info.EndTime + "'"
 	}
 
-	querySql += "ORDER BY created_at DESC LIMIT ? OFFSET ? "
+	querySql += condition + " ORDER BY created_at DESC LIMIT ? OFFSET ? "
+
+	err = reportTable.Where(condition).Count(&total).Error
+	if err != nil {
+		return
+	}
+
+	if info.Page == 0 {
+		limit = int(total)
+	}
+
 	err = global.GLOBAL_DB.Raw(querySql, limit, offset).Scan(&reportsSearchBOList).Error
 
 	reportsSearchResultList := reportsToSearchResult(reportsSearchBOList)

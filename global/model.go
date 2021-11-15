@@ -17,7 +17,9 @@ type GLOBAL_MODEL struct {
 }
 
 //FormatTime 自定义时间
-type FormatTime time.Time
+type FormatTime struct {
+	time.Time
+}
 
 const timeLayout = "2006-01-02 15:04:05"
 
@@ -25,32 +27,37 @@ func (t *FormatTime) UnmarshalJSON(data []byte) error {
 	if string(data) == "null" {
 		return nil
 	}
+
 	var err error
 	//前端接收的时间字符串
 	str := string(data)
 	//去除接收的str收尾多余的"
 	timeStr := strings.Trim(str, "\"")
 	t1, err := time.Parse(timeLayout, timeStr)
-	*t = FormatTime(t1)
+	*t = FormatTime{t1}
 	return err
 }
 
 func (t FormatTime) MarshalJSON() ([]byte, error) {
-	formatted := fmt.Sprintf("\"%v\"", time.Time(t).Format(timeLayout))
+	formatted := fmt.Sprintf("\"%v\"", t.Time.Format(timeLayout))
 	return []byte(formatted), nil
 }
 
 func (t FormatTime) Value() (driver.Value, error) {
 	// FormatTime 转换成 time.Time 类型
-	tTime := time.Time(t)
-	return tTime.Format(timeLayout), nil
+	var zeroTime time.Time
+	if t.Time.UnixNano() == zeroTime.UnixNano() {
+		return nil, nil
+	}
+
+	return t.Time.Format(timeLayout), nil
 }
 
 func (t *FormatTime) Scan(v interface{}) error {
 	switch vt := v.(type) {
 	case time.Time:
 		// 字符串转成 time.Time 类型
-		*t = FormatTime(vt)
+		*t = FormatTime{vt}
 	default:
 		return errors.New("类型处理错误")
 	}
@@ -58,5 +65,5 @@ func (t *FormatTime) Scan(v interface{}) error {
 }
 
 func (t *FormatTime) String() string {
-	return fmt.Sprintf("hhh:%s", time.Time(*t).String())
+	return t.Time.Format(timeLayout)
 }
