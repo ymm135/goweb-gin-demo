@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: weekly_report
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3308:3306
+      - 3306:3306
     volumes:
       - ./mysql/initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/conf.d:/etc/mysql/conf.d
@@ -23,7 +23,7 @@ services:
     - 8980:8980
     volumes:
     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    - ./build/:/usr/local/build/
+    - ./web/:/usr/local/web/
 
   golang:
     depends_on:

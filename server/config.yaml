@@ -43,7 +43,7 @@ captcha:
 
 # mysql connect configuration
 mysql:
-  path: '127.0.0.1:3308'
+  path: '127.0.0.1:3306'
   config: 'parseTime=true'
   db-name: 'weekly_report'
   username: 'root'

@@ -1,8 +1,11 @@
 # 目录
-- docker 安装  
+# docker 安装  
 ```
   cd docker && docker-compose up -d  
 ```
+
+访问地址: `http://localhost:8980`   
+
 
 运行界面截图:  
 
