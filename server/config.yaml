@@ -43,7 +43,7 @@ captcha:
 
 # mysql connect configuration
 mysql:
-  path: '10.25.17.26:3306'
+  path: '127.0.0.1:3306'
   config: 'parseTime=true'
   db-name: 'weekly_report'
   username: 'root'
@@ -55,10 +55,10 @@ mysql:
 
 # 本地下载文件路径
 local:
-  path: '/Users/zero/Documents/uploads/file'
+  path: '/usr/local/web/uploads'
 
 excel:
-  dir: '/Users/zero/Documents/excel/file'
+  dir: '/usr/local/web/excels'
 
 # timer task db clear table
 Timer:
