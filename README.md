@@ -4,10 +4,32 @@
   cd docker && docker-compose up -d  
 ```
 
-访问地址: `http://localhost:8980`   
+修改IP地址为安装容器主机的IP地址  
+```
+# nginx配置
+1. docker/nginx/nginx.conf
+
+ location /week/ {
+              proxy_pass  http://服务器IP:8981/;
+ }
+
+2. server/config.yaml
+
+# mysql connect configuration
+mysql:
+  path: 'mysqlIP:3306'
+
+```
+
+访问地址: `http://localhost:8980`即可   
 
 
 运行界面截图:  
+![写周报](./res/write_report.png)  
+
+<br>
+
+![统计规则](./res/stat.png)   
 
 
 - [goweb-gin-demo](#goweb-gin-demo)
