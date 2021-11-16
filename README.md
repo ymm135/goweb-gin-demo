@@ -1,5 +1,33 @@
 # 目录
-# docker 安装  
+- [docker部署](#docker部署)
+- [goweb-gin-demo](#goweb-gin-demo)
+- [web框架gin](#web框架gin)
+    - [特性](#特性)
+	- [服务创建及启动](#服务创建及启动)
+- [gorm](#gorm)
+	- [概述](#概述)
+	- [模型定义](#模型定义)
+	- [连接数据库](#连接数据库)
+		- [连接池](#连接池)
+	- [CRUD](#crud)
+		- [基本操作](#基本操作)
+		- [创建钩子](#创建钩子)
+- [通过Swagger测试接口, 中文文档](#通过swagger测试接口-中文文档)
+- [验证码获取及校验](#验证码获取及校验)
+- [获取菜单项](#获取菜单项)
+- [使用casbin 控制权限](#使用casbin-控制权限)
+- [文件上传及下载](#文件上传及下载)
+- [代码自动生成](#代码自动生成)
+- [反射reflect](#反射reflect)
+- [GoWeb 发布](#goweb-发布)
+- [疑问及拓展](#疑问及拓展)
+    - [为什么函数或方法中变量名很多都是大写字母开始的?](#为什么函数或方法中变量名很多都是大写字母开始的)
+    - [unsupported Scan, storing driver.Value type []uint8 into type *time.Time](#unsupported-scan-storing-drivervalue-type-uint8-into-type-timetime)
+    - [Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key](#error-1075-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key)
+    - [查看http请求详情](#查看http请求详情)
+    - [docker容器没有访问权限](#docker容器没有访问权限)
+  
+# docker部署
 ```
   cd docker && docker-compose up -d  
 ```
@@ -30,34 +58,6 @@ mysql:
 <br>
 
 ![统计规则](./res/stat.png)   
-
-
-- [goweb-gin-demo](#goweb-gin-demo)
-- [web框架gin](#web框架gin)
-    - [特性](#特性)
-	- [服务创建及启动](#服务创建及启动)
-- [gorm](#gorm)
-	- [概述](#概述)
-	- [模型定义](#模型定义)
-	- [连接数据库](#连接数据库)
-		- [连接池](#连接池)
-	- [CRUD](#crud)
-		- [基本操作](#基本操作)
-		- [创建钩子](#创建钩子)
-- [通过Swagger测试接口, 中文文档](#通过swagger测试接口-中文文档)
-- [验证码获取及校验](#验证码获取及校验)
-- [获取菜单项](#获取菜单项)
-- [使用casbin 控制权限](#使用casbin-控制权限)
-- [文件上传及下载](#文件上传及下载)
-- [代码自动生成](#代码自动生成)
-- [反射reflect](#反射reflect)
-- [GoWeb 发布](#goweb-发布)
-- [疑问及拓展](#疑问及拓展)
-    - [为什么函数或方法中变量名很多都是大写字母开始的?](#为什么函数或方法中变量名很多都是大写字母开始的)
-    - [unsupported Scan, storing driver.Value type []uint8 into type *time.Time](#unsupported-scan-storing-drivervalue-type-uint8-into-type-timetime)
-    - [Error 1075: Incorrect table definition; there can be only one auto column and it must be defined as a key](#error-1075-incorrect-table-definition-there-can-be-only-one-auto-column-and-it-must-be-defined-as-a-key)
-    - [查看http请求详情](#查看http请求详情)
-  
 # goweb-gin-demo
 go web脚手架, [数据库及表结构](server/resource/sql/weekly_report.sql)  
 
@@ -950,6 +950,29 @@ Sets the location for time.Time values (when using parseTime=true). "Local" sets
 <img src="server/resource/md_res/gin-http-res.jpg" width="70%" height="70%" title="Go Http请求"></img>
 </div>
 <br>  
+
+#### docker容器没有访问权限
+
+```
+nginx     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+mysql     | 2021-11-16 07:29:26+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.36-1debian10 started.
+mysql     | 2021-11-16 07:29:26+00:00 [ERROR] [Entrypoint]: mysqld failed while attempting to check config
+mysql     | 	command was: mysqld --verbose --help --log-bin-index=/tmp/tmp.2oV5LPDbk7
+mysql     | 	mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 13 - Permission denied)
+mysql     | mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
+```
+
+**最终原因是没有关闭selinux**, 直接关闭即可。 `setenforce 0`
+```
+vim /etc/selinux/config
+// 关闭
+SELINUX=disable
+``` 
+
+> SELinux 主要作用就是最大限度地减小系统中服务进程可访问的资源（最小权限原则）。
+> 设想一下，如果一个以 root 身份运行的网络服务存在 0day 漏洞，黑客就可以利用这个漏洞，以 root 的身份在您的服务器上为所欲为了。是不是很可怕？
+> SELinux 就是来解决这个问题的。
 
 
 
