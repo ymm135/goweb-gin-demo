@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/request"
+	systemModel "goweb-gin-demo/model/system"
 	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
 	wtRes "goweb-gin-demo/model/wt/response"
+	"goweb-gin-demo/service/system"
 	"strconv"
 )
 
@@ -118,15 +120,20 @@ func voToRrports(reportsVO wtReq.WtReportsVO) wt.WtReports {
 // 批量转换 数据转换, 把字符串转换为json
 func reportsToSearchResult(wtReportsList []wtRes.WtReportsSearchBO) []wtRes.WtReportsSearchResult {
 	var reportsSearchResults []wtRes.WtReportsSearchResult
+
+	var sysServiceGroup system.SystemServiceGroup
+	_, userMap := sysServiceGroup.GetAllUserInfoMap()
+
 	for _, searchBO := range wtReportsList {
-		reportVO := reportToSearchResult(searchBO)
+		userInfo := userMap[searchBO.UserName]
+		reportVO := reportToSearchResult(searchBO, userInfo)
 		reportsSearchResults = append(reportsSearchResults, reportVO)
 	}
 	return reportsSearchResults
 }
 
 //单个转换
-func reportToSearchResult(searchBO wtRes.WtReportsSearchBO) wtRes.WtReportsSearchResult {
+func reportToSearchResult(searchBO wtRes.WtReportsSearchBO, user systemModel.SysUser) wtRes.WtReportsSearchResult {
 	searchResult := wtRes.WtReportsSearchResult{}
 	searchResult.GLOBAL_MODEL = searchBO.GLOBAL_MODEL
 
@@ -134,6 +141,12 @@ func reportToSearchResult(searchBO wtRes.WtReportsSearchBO) wtRes.WtReportsSearc
 	searchResult.UserId = searchBO.UserId
 	searchResult.Header = searchBO.Header
 	searchResult.CommentCount = searchBO.CommentCount
+
+	if len(user.NickName) == 0 {
+		searchResult.NickName =  searchBO.UserName
+	} else {
+		searchResult.NickName =  user.NickName
+	}
 
 	json.Unmarshal([]byte(searchBO.SendTo), &searchResult.SendTo)
 	json.Unmarshal([]byte(searchBO.Contents), &searchResult.Contents)

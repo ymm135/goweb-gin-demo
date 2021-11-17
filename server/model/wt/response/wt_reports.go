@@ -30,5 +30,6 @@ type WtReportsSearchBO struct {
 type WtReportsSearchResult struct {
 	global.GLOBAL_MODEL
 	WtReportInfo
+	NickName string `json:"nickName"`
 	CommentCount uint `json:"commentCount"`
 }

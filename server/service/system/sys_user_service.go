@@ -186,3 +186,21 @@ func (userService *UserService) FindUserByUuid(uuid string) (err error, user *sy
 	}
 	return nil, &u
 }
+
+func (userService *UserService) GetAllUserInfoMap() (err error, userMap map[string]system.SysUser) {
+
+	db := global.GLOBAL_DB.Model(&system.SysUser{})
+	var userList []system.SysUser
+
+	if err != nil {
+		return
+	}
+	err = db.Find(&userList).Error
+
+	tempMap := make(map[string]system.SysUser)
+	for _, user := range userList {
+		tempMap[user.Username] = user
+	}
+
+	return err, tempMap
+}
