@@ -639,7 +639,7 @@ DROP TABLE IF EXISTS `wt_rules`;
 CREATE TABLE `wt_rules` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `reporters` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT '需要提交报告的用户名ID',
+  `reporters` varchar(5000) COLLATE utf8_bin DEFAULT NULL COMMENT '需要提交报告的用户名ID',
   `start_week` int(10) DEFAULT NULL COMMENT '提交报告的开始在周几',
   `start_hour` int(10) DEFAULT NULL COMMENT '提交周报的开始时间小时',
   `end_week` int(10) DEFAULT NULL COMMENT '提交报告的结束在周几',

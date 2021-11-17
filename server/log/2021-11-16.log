@@ -22,3 +22,4 @@
 [goweb-demo]2021/11/16 - 06:39:03.560	[31merror[0m	/usr/local/weekly_report/api/system/sys_user.go:36	登陆失败! 用户名不存在或者密码错误!	{"err": "record not found"}
 [goweb-demo]2021/11/16 - 07:16:08.828	[34minfo[0m	/usr/local/weekly_report/initialize/router.go:49	router register success
 [goweb-demo]2021/11/16 - 07:16:08.838	[34minfo[0m	/usr/local/weekly_report/core/server.go:31	server run success on 	{"address": ":8981"}
+[goweb-demo]2021/11/16 - 12:44:19.513	[31merror[0m	/usr/local/weekly_report/core/server.go:38	accept tcp [::]:8981: use of closed network connection

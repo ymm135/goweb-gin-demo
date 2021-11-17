@@ -27,8 +27,9 @@ func (wtRuleService *WtRuleService) DeleteWtRuleByIds(ids request.IdsReq) (err e
 
 // UpdateWtRule 更新WtRule记录
 func (wtRuleService *WtRuleService) UpdateWtRule(ruleRes wtReq.WtRuleRes) (err error) {
+	ruleRes.ID = 7
 	rule := voToRule(ruleRes)
-	err = global.GLOBAL_DB.Updates(&rule).Error
+	err = global.GLOBAL_DB.Omit("created_at").Save(&rule).Error
 	return err
 }
 
@@ -62,7 +63,12 @@ func (wtRuleService *WtRuleService) GetWtRuleInfoList(info wtReq.WtRuleSearch) (
 		limit = int(total)
 	}
 
-	err = db.Limit(limit).Offset(offset).Find(&wtRules).Error
+	if info.UserId == 0 {
+		err = db.Limit(limit).Offset(offset).Find(&wtRules).Error
+	} else {
+		err = db.Where("user_id = ?", info.UserId).Count(&total).Error
+		err = db.Where("user_id = ?", info.UserId).Limit(limit).Offset(offset).Find(&wtRules).Error
+	}
 
 	ruleResults := rulesToVOs(wtRules)
 

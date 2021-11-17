@@ -28,8 +28,8 @@ func (wtRuleApi *WtOutputApi) GetStatResult(c *gin.Context) {
 	c.ShouldBindQuery(&idInfo)
 
 	if err, rewtOutput := wtOutputService.GetStatResult(idInfo); err != nil {
-		global.GLOBAL_LOG.Error("查询失败!", zap.Any("err", err))
-		response.FailWithMessage("查询失败", c)
+		global.GLOBAL_LOG.Error("统计失败,可能需要先创建统计规则!", zap.Any("err", err))
+		response.FailWithMessage("统计失败,可能需要先创建统计规则!", c)
 	} else {
 		response.OkWithData(gin.H{"rewtOutput": rewtOutput}, c)
 	}
