@@ -632,7 +632,7 @@ CREATE TABLE `wt_reports` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '用户名',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `send_to` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '发送给谁',
+  `send_to` varchar(5000) COLLATE utf8_bin DEFAULT NULL COMMENT '发送给谁',
   `header` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '报告标题名',
   `contents` mediumtext COLLATE utf8_bin COMMENT '报告内容',
   `pictures` text COLLATE utf8_bin COMMENT '图片',

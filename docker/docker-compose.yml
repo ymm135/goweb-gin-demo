@@ -5,13 +5,16 @@ services:
     container_name: mysql
     restart: always
     environment:
-      MYSQL_DATABASE: weekly_report
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_DATABASE=weekly_report
+      - MYSQL_ROOT_PASSWORD=root
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
     ports:
       - 3306:3306
     volumes:
       - ./mysql/initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/conf.d:/etc/mysql/conf.d
+    #  - ./mysql/data:/var/lib/mysql    # mysql 数据存储目录
 
   nginx:
     depends_on:
@@ -36,6 +39,8 @@ services:
     environment:
       - GO111MODULE=on
       - GOPROXY=https://goproxy.cn
+      - SET_CONTAINER_TIMEZONE=true
+      - CONTAINER_TIMEZONE=Asia/Shanghai
     privileged: true
     restart: always
     ports:
@@ -43,4 +48,9 @@ services:
     volumes:
       - ../server/:/usr/local/weekly_report
       - ./web/:/usr/local/web
+
+    # alpine 更新时间
+    # echo 'http://mirrors.ustc.edu.cn/alpine/v3.5/main' > /etc/apk/repositories
+    # echo 'http://mirrors.ustc.edu.cn/alpine/v3.5/community' >>/etc/apk/repositories
+    # 时间同步: RUN apk add tzdata ; cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata
 
