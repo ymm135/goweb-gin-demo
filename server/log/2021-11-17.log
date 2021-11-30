@@ -16,3 +16,11 @@
 [goweb-demo]2021/11/17 - 19:32:08.254	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/api/wt/wt_comments.go:111	获取失败!	{"err": "Error 1054: Unknown column 'wt_comments.nick_name' in 'field list'"}
 [goweb-demo]2021/11/17 - 19:34:29.681	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
 [goweb-demo]2021/11/17 - 19:34:29.682	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:31	server run success on 	{"address": ":8981"}
+[goweb-demo]2021/11/17 - 21:24:08.831	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2021/11/17 - 21:24:08.832	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:31	server run success on 	{"address": ":8981"}
+[goweb-demo]2021/11/17 - 13:25:22.345	[34minfo[0m	/usr/local/weekly_report/initialize/router.go:49	router register success
+[goweb-demo]2021/11/17 - 13:25:22.362	[34minfo[0m	/usr/local/weekly_report/core/server.go:31	server run success on 	{"address": ":8981"}
+[goweb-demo]2021/11/17 - 21:26:18.705	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:38	accept tcp [::]:8981: use of closed network connection
+[goweb-demo]2021/11/17 - 21:26:27.431	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2021/11/17 - 21:26:27.434	[34minfo[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:31	server run success on 	{"address": ":8981"}
+[goweb-demo]2021/11/17 - 21:26:59.880	[31merror[0m	/Users/zero/work/mygithub/goweb-gin-demo/server/core/server.go:38	accept tcp [::]:8981: use of closed network connection
