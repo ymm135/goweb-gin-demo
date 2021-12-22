@@ -5,9 +5,9 @@ import (
 	"path"
 	"time"
 
-	"goweb-gin-demo/global"
 	zaprotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"go.uber.org/zap/zapcore"
+	"goweb-gin-demo/global"
 )
 
 //@author: [SliverHorn](https://github.com/SliverHorn)
@@ -17,7 +17,7 @@ import (
 
 func GetWriteSyncer() (zapcore.WriteSyncer, error) {
 	fileWriter, err := zaprotatelogs.New(
-		path.Join(global.GVA_CONFIG.Zap.Director, "%Y-%m-%d.log"),
+		path.Join(global.GLOBAL_CONFIG.Zap.Director, "%Y-%m-%d.log"),
 		zaprotatelogs.WithMaxAge(7*24*time.Hour),
 		zaprotatelogs.WithRotationTime(24*time.Hour),
 	)
