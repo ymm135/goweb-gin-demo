@@ -2,11 +2,10 @@ package core
 
 import (
 	"fmt"
-	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/initialize"
-	"go.uber.org/zap"
 	"time"
 )
 
@@ -36,12 +35,4 @@ func RunServer() {
 	默认前端文件运行地址:http://127.0.0.1:8080
 `, address)
 	global.GLOBAL_LOG.Error(s.ListenAndServe().Error())
-}
-
-func initServer(address string, router *gin.Engine) server {
-	s := endless.NewServer(address, router)
-	s.ReadHeaderTimeout = 10 * time.Millisecond
-	s.WriteTimeout = 10 * time.Second
-	s.MaxHeaderBytes = 1 << 20
-	return s
 }
