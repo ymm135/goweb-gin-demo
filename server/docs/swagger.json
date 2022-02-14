@@ -1,8 +1,12 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "description": "This is a sample Server pets",
+        "title": "Swagger Example API",
+        "contact": {},
+        "version": "0.0.1"
     },
+    "basePath": "/",
     "paths": {
         "/authority/copyAuthority": {
             "post": {
@@ -66,7 +70,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysAuthority"
+                            "$ref": "#/definitions/system.SysAuthority"
                         }
                     }
                 ],
@@ -104,7 +108,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysAuthority"
+                            "$ref": "#/definitions/system.SysAuthority"
                         }
                     }
                 ],
@@ -180,7 +184,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysAuthority"
+                            "$ref": "#/definitions/system.SysAuthority"
                         }
                     }
                 ],
@@ -218,7 +222,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysAuthority"
+                            "$ref": "#/definitions/system.SysAuthority"
                         }
                     }
                 ],
@@ -382,7 +386,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.FileUploadAndDownload"
+                            "$ref": "#/definitions/system.FileUploadAndDownload"
                         }
                     }
                 ],
@@ -629,7 +633,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysBaseMenu"
+                            "$ref": "#/definitions/system.SysBaseMenu"
                         }
                     }
                 ],
@@ -927,7 +931,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.SysBaseMenu"
+                            "$ref": "#/definitions/system.SysBaseMenu"
                         }
                     }
                 ],
@@ -1034,7 +1038,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/web.System"
+                            "$ref": "#/definitions/system.System"
                         }
                     }
                 ],
@@ -1465,12 +1469,6 @@
                         "in": "query"
                     },
                     {
-                        "type": "string",
-                        "description": "创建时间",
-                        "name": "createdAt",
-                        "in": "query"
-                    },
-                    {
                         "type": "integer",
                         "description": "主键ID",
                         "name": "id",
@@ -1491,12 +1489,6 @@
                     {
                         "type": "integer",
                         "name": "reportId",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "更新时间",
-                        "name": "updatedAt",
                         "in": "query"
                     },
                     {
@@ -1981,12 +1973,6 @@
                 "summary": "分页获取统计规则列表",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "创建时间",
-                        "name": "createdAt",
-                        "in": "query"
-                    },
-                    {
                         "type": "integer",
                         "name": "endHour",
                         "in": "query"
@@ -2027,12 +2013,6 @@
                     {
                         "type": "integer",
                         "name": "startWeek",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "更新时间",
-                        "name": "updatedAt",
                         "in": "query"
                     },
                     {
@@ -2230,12 +2210,6 @@
                     },
                     {
                         "type": "string",
-                        "description": "创建时间",
-                        "name": "createdAt",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "header",
                         "in": "query"
                     },
@@ -2265,12 +2239,6 @@
                     {
                         "type": "string",
                         "name": "sendTo",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "更新时间",
-                        "name": "updatedAt",
                         "in": "query"
                     },
                     {
@@ -2726,6 +2694,14 @@
                 }
             }
         },
+        "global.FormatTime": {
+            "type": "object",
+            "properties": {
+                "time.Time": {
+                    "type": "string"
+                }
+            }
+        },
         "request.AddMenuAuthorityInfo": {
             "type": "object",
             "properties": {
@@ -2736,7 +2712,7 @@
                 "menus": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysBaseMenu"
+                        "$ref": "#/definitions/system.SysBaseMenu"
                     }
                 }
             }
@@ -2992,7 +2968,7 @@
             "type": "object",
             "properties": {
                 "authority": {
-                    "$ref": "#/definitions/web.SysAuthority"
+                    "$ref": "#/definitions/system.SysAuthority"
                 },
                 "oldAuthorityId": {
                     "description": "旧角色ID",
@@ -3000,12 +2976,12 @@
                 }
             }
         },
-        "web.FileUploadAndDownload": {
+        "system.FileUploadAndDownload": {
             "type": "object",
             "properties": {
                 "createdAt": {
                     "description": "创建时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "id": {
                     "description": "主键ID",
@@ -3025,7 +3001,7 @@
                 },
                 "updatedAt": {
                     "description": "更新时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "url": {
                     "description": "文件地址",
@@ -3033,7 +3009,7 @@
                 }
             }
         },
-        "web.SysAuthority": {
+        "system.SysAuthority": {
             "type": "object",
             "properties": {
                 "authorityId": {
@@ -3047,7 +3023,7 @@
                 "children": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysAuthority"
+                        "$ref": "#/definitions/system.SysAuthority"
                     }
                 },
                 "createdAt": {
@@ -3057,7 +3033,7 @@
                 "dataAuthorityId": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysAuthority"
+                        "$ref": "#/definitions/system.SysAuthority"
                     }
                 },
                 "defaultRouter": {
@@ -3070,7 +3046,7 @@
                 "menus": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysBaseMenu"
+                        "$ref": "#/definitions/system.SysBaseMenu"
                     }
                 },
                 "parentId": {
@@ -3083,19 +3059,19 @@
                 }
             }
         },
-        "web.SysBaseMenu": {
+        "system.SysBaseMenu": {
             "type": "object",
             "properties": {
                 "authoritys": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysAuthority"
+                        "$ref": "#/definitions/system.SysAuthority"
                     }
                 },
                 "children": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysBaseMenu"
+                        "$ref": "#/definitions/system.SysBaseMenu"
                     }
                 },
                 "closeTab": {
@@ -3108,7 +3084,7 @@
                 },
                 "createdAt": {
                     "description": "创建时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "defaultMenu": {
                     "description": "是否是基础路由（开发中）",
@@ -3137,7 +3113,7 @@
                 "parameters": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/web.SysBaseMenuParameter"
+                        "$ref": "#/definitions/system.SysBaseMenuParameter"
                     }
                 },
                 "parentId": {
@@ -3158,16 +3134,16 @@
                 },
                 "updatedAt": {
                     "description": "更新时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 }
             }
         },
-        "web.SysBaseMenuParameter": {
+        "system.SysBaseMenuParameter": {
             "type": "object",
             "properties": {
                 "createdAt": {
                     "description": "创建时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "id": {
                     "description": "主键ID",
@@ -3186,7 +3162,7 @@
                 },
                 "updatedAt": {
                     "description": "更新时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "value": {
                     "description": "地址栏携带参数的值",
@@ -3194,7 +3170,7 @@
                 }
             }
         },
-        "web.System": {
+        "system.System": {
             "type": "object",
             "properties": {
                 "config": {
@@ -3232,7 +3208,7 @@
                 },
                 "createdAt": {
                     "description": "创建时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "id": {
                     "description": "主键ID",
@@ -3243,12 +3219,19 @@
                 },
                 "updatedAt": {
                     "description": "更新时间",
-                    "type": "string"
+                    "$ref": "#/definitions/global.FormatTime"
                 },
                 "userName": {
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "x-token",
+            "in": "header"
         }
     }
 }

@@ -1,0 +1,36 @@
+[goweb-demo]2022/02/14 - 16:52:53.197	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 16:52:53.199	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 16:53:13.378	[31merror[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:37	accept tcp [::]:8981: use of closed network connection
+[goweb-demo]2022/02/14 - 17:09:06.827	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 17:09:06.828	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 17:22:15.273	[31merror[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:37	accept tcp [::]:8981: use of closed network connection
+[goweb-demo]2022/02/14 - 17:22:42.489	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 17:22:42.491	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 17:49:06.930	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 17:49:06.933	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 17:50:22.068	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 17:50:22.071	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 17:57:31.417	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 17:57:31.419	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 18:15:32.210	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 18:15:32.213	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 18:24:19.720	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 18:24:19.721	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 18:26:52.764	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 18:26:52.770	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:20:26.075	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:20:26.077	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:29:22.179	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:29:22.184	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:30:37.483	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:30:37.484	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:38:34.569	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:38:34.574	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:46:46.397	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:46:46.400	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:49:03.595	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:49:03.597	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:49:18.199	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:49:18.201	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/14 - 20:53:40.553	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/14 - 20:53:40.560	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}

@@ -9,6 +9,7 @@ import (
 	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
 	wtRes "goweb-gin-demo/model/wt/response"
+	"goweb-gin-demo/service/system"
 	"goweb-gin-demo/utils"
 	"jaytaylor.com/html2text"
 )
@@ -25,7 +26,6 @@ func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID
 	if err != nil {
 		return err, wtRes.StatResult{}
 	}
-
 
 	//计算起始时间 起始时间是 5-0900 7-1000
 
@@ -56,6 +56,8 @@ func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID
 	var commitedList []common.UserInfo
 	var uncommitedList []common.UserInfo
 
+	existUserFilter(&reports)
+
 	// 比较那些人提交了，那些人没有提交
 	for _, needCommitPeoples := range reports {
 		isCommit := false
@@ -79,6 +81,20 @@ func (wtOutputService *WtOutputService) GetStatResult(idInfo request.GetByUserID
 	statResult.UncommitPeoples = uncommitedList
 
 	return err, statResult
+}
+
+func existUserFilter(users *[]common.UserInfo) {
+	var sysServiceGroup system.SystemServiceGroup
+	// 已删除用户不显示
+	var existReports []common.UserInfo
+	for _, report := range *users {
+		id := report.ID
+		err, _ := sysServiceGroup.FindUserById(int(id))
+		if err == nil { // record not found
+			existReports = append(existReports, report)
+		}
+	}
+	*users = existReports
 }
 
 func (wtOutputService *WtOutputService) ExportReportToExcel(info wt.StatDataSearch, excelPath string) (err error) {
@@ -115,12 +131,12 @@ func (wtOutputService *WtOutputService) ExportReportToExcel(info wt.StatDataSear
 		axis := fmt.Sprintf("A%d", i+2)
 
 		var excelContent []interface{}
-		excelContent = append(excelContent, i + 1)
+		excelContent = append(excelContent, i+1)
 		excelContent = append(excelContent, report.Header)
 		excelContent = append(excelContent, report.UserName)
 
 		for _, content := range report.Contents {
-			fromString, err := html2text.FromString(content.Content,  html2text.Options{TextOnly: true})
+			fromString, err := html2text.FromString(content.Content, html2text.Options{TextOnly: true})
 			if err != nil {
 				return err
 			}

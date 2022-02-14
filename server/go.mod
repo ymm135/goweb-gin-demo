@@ -28,7 +28,7 @@ require (
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/stretchr/testify v1.7.0
 	github.com/swaggo/gin-swagger v1.3.2
-	github.com/swaggo/swag v1.7.4
+	github.com/swaggo/swag v1.7.9
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.31
 	github.com/xuri/excelize/v2 v2.4.1
 	go.uber.org/zap v1.16.0

@@ -1,0 +1,3 @@
+[goweb-demo]2022/02/10 - 14:05:02.170	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/initialize/router.go:49	router register success
+[goweb-demo]2022/02/10 - 14:05:02.172	[34minfo[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:30	server run success on 	{"address": ":8981"}
+[goweb-demo]2022/02/10 - 16:00:13.220	[31merror[0m	/Users/ymm/work/mygithub/goweb-gin-demo/server/core/server.go:37	accept tcp [::]:8981: use of closed network connection

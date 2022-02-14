@@ -14,6 +14,7 @@ type WtRuleService struct {
 
 // CreateWtRule 创建WtRule记录
 func (wtRuleService *WtRuleService) CreateWtRule(ruleRes wtReq.WtRuleRes) (err error) {
+	existUserFilter(&ruleRes.Reporters)
 	rule := voToRule(ruleRes)
 	err = global.GLOBAL_DB.Create(&rule).Error
 	return err
@@ -27,7 +28,7 @@ func (wtRuleService *WtRuleService) DeleteWtRuleByIds(ids request.IdsReq) (err e
 
 // UpdateWtRule 更新WtRule记录
 func (wtRuleService *WtRuleService) UpdateWtRule(ruleRes wtReq.WtRuleRes) (err error) {
-	ruleRes.ID = 7
+	existUserFilter(&ruleRes.Reporters)
 	rule := voToRule(ruleRes)
 	err = global.GLOBAL_DB.Omit("created_at").Save(&rule).Error
 	return err
@@ -71,6 +72,9 @@ func (wtRuleService *WtRuleService) GetWtRuleInfoList(info wtReq.WtRuleSearch) (
 	}
 
 	ruleResults := rulesToVOs(wtRules)
+	if err == nil && len(ruleResults) >= 1 {
+		existUserFilter(&(ruleResults[0].Reporters))
+	}
 
 	return err, ruleResults, total
 }

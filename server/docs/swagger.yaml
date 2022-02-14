@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   common.UserInfo:
     properties:
@@ -273,6 +274,11 @@ definitions:
         description: 栈名
         type: string
     type: object
+  global.FormatTime:
+    properties:
+      time.Time:
+        type: string
+    type: object
   request.AddMenuAuthorityInfo:
     properties:
       authorityId:
@@ -280,7 +286,7 @@ definitions:
         type: string
       menus:
         items:
-          $ref: '#/definitions/web.SysBaseMenu'
+          $ref: '#/definitions/system.SysBaseMenu'
         type: array
     type: object
   request.ChangePasswordStruct:
@@ -452,16 +458,16 @@ definitions:
   response.SysAuthorityCopyResponse:
     properties:
       authority:
-        $ref: '#/definitions/web.SysAuthority'
+        $ref: '#/definitions/system.SysAuthority'
       oldAuthorityId:
         description: 旧角色ID
         type: string
     type: object
-  web.FileUploadAndDownload:
+  system.FileUploadAndDownload:
     properties:
       createdAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 创建时间
-        type: string
       id:
         description: 主键ID
         type: integer
@@ -475,13 +481,13 @@ definitions:
         description: 文件标签
         type: string
       updatedAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 更新时间
-        type: string
       url:
         description: 文件地址
         type: string
     type: object
-  web.SysAuthority:
+  system.SysAuthority:
     properties:
       authorityId:
         description: 角色ID
@@ -491,14 +497,14 @@ definitions:
         type: string
       children:
         items:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
         type: array
       createdAt:
         description: 创建时间
         type: string
       dataAuthorityId:
         items:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
         type: array
       defaultRouter:
         description: 默认菜单(默认dashboard)
@@ -507,7 +513,7 @@ definitions:
         type: string
       menus:
         items:
-          $ref: '#/definitions/web.SysBaseMenu'
+          $ref: '#/definitions/system.SysBaseMenu'
         type: array
       parentId:
         description: 父角色ID
@@ -516,15 +522,15 @@ definitions:
         description: 更新时间
         type: string
     type: object
-  web.SysBaseMenu:
+  system.SysBaseMenu:
     properties:
       authoritys:
         items:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
         type: array
       children:
         items:
-          $ref: '#/definitions/web.SysBaseMenu'
+          $ref: '#/definitions/system.SysBaseMenu'
         type: array
       closeTab:
         description: 自动关闭tab
@@ -533,8 +539,8 @@ definitions:
         description: 对应前端文件路径
         type: string
       createdAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 创建时间
-        type: string
       defaultMenu:
         description: 是否是基础路由（开发中）
         type: boolean
@@ -555,7 +561,7 @@ definitions:
         type: string
       parameters:
         items:
-          $ref: '#/definitions/web.SysBaseMenuParameter'
+          $ref: '#/definitions/system.SysBaseMenuParameter'
         type: array
       parentId:
         description: 父菜单ID
@@ -570,14 +576,14 @@ definitions:
         description: 菜单名
         type: string
       updatedAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 更新时间
-        type: string
     type: object
-  web.SysBaseMenuParameter:
+  system.SysBaseMenuParameter:
     properties:
       createdAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 创建时间
-        type: string
       id:
         description: 主键ID
         type: integer
@@ -590,13 +596,13 @@ definitions:
         description: 地址栏携带参数为params还是query
         type: string
       updatedAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 更新时间
-        type: string
       value:
         description: 地址栏携带参数的值
         type: string
     type: object
-  web.System:
+  system.System:
     properties:
       config:
         $ref: '#/definitions/config.Server'
@@ -620,21 +626,24 @@ definitions:
       comment:
         type: string
       createdAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 创建时间
-        type: string
       id:
         description: 主键ID
         type: integer
       reportId:
         type: integer
       updatedAt:
+        $ref: '#/definitions/global.FormatTime'
         description: 更新时间
-        type: string
       userName:
         type: string
     type: object
 info:
   contact: {}
+  description: This is a sample Server pets
+  title: Swagger Example API
+  version: 0.0.1
 paths:
   /authority/copyAuthority:
     post:
@@ -669,7 +678,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
       produces:
       - application/json
       responses:
@@ -692,7 +701,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
       produces:
       - application/json
       responses:
@@ -738,7 +747,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
       produces:
       - application/json
       responses:
@@ -761,7 +770,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysAuthority'
+          $ref: '#/definitions/system.SysAuthority'
       produces:
       - application/json
       responses:
@@ -861,7 +870,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.FileUploadAndDownload'
+          $ref: '#/definitions/system.FileUploadAndDownload'
       produces:
       - application/json
       responses:
@@ -1011,7 +1020,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysBaseMenu'
+          $ref: '#/definitions/system.SysBaseMenu'
       produces:
       - application/json
       responses:
@@ -1191,7 +1200,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.SysBaseMenu'
+          $ref: '#/definitions/system.SysBaseMenu'
       produces:
       - application/json
       responses:
@@ -1254,7 +1263,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/web.System'
+          $ref: '#/definitions/system.System'
       produces:
       - application/json
       responses:
@@ -1513,10 +1522,6 @@ paths:
       - in: query
         name: comment
         type: string
-      - description: 创建时间
-        in: query
-        name: createdAt
-        type: string
       - description: 主键ID
         in: query
         name: id
@@ -1532,10 +1537,6 @@ paths:
       - in: query
         name: reportId
         type: integer
-      - description: 更新时间
-        in: query
-        name: updatedAt
-        type: string
       - in: query
         name: userName
         type: string
@@ -1826,10 +1827,6 @@ paths:
       consumes:
       - application/json
       parameters:
-      - description: 创建时间
-        in: query
-        name: createdAt
-        type: string
       - in: query
         name: endHour
         type: integer
@@ -1857,10 +1854,6 @@ paths:
       - in: query
         name: startWeek
         type: integer
-      - description: 更新时间
-        in: query
-        name: updatedAt
-        type: string
       - in: query
         name: userId
         type: integer
@@ -1977,10 +1970,6 @@ paths:
       - in: query
         name: contents
         type: string
-      - description: 创建时间
-        in: query
-        name: createdAt
-        type: string
       - in: query
         name: header
         type: string
@@ -2001,10 +1990,6 @@ paths:
         type: string
       - in: query
         name: sendTo
-        type: string
-      - description: 更新时间
-        in: query
-        name: updatedAt
         type: string
       - in: query
         name: userId
@@ -2047,4 +2032,9 @@ paths:
       summary: 更新周报模板
       tags:
       - WtTemplate
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: x-token
+    type: apiKey
 swagger: "2.0"

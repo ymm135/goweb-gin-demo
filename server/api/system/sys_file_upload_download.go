@@ -73,7 +73,7 @@ func (u *FileUploadAndDownloadApi) DownloadFile(c *gin.Context) {
 // @Summary 删除文件
 // @Security ApiKeyAuth
 // @Produce  application/json
-// @Param data body web.FileUploadAndDownload true "传入文件里面id即可"
+// @Param data body system.FileUploadAndDownload true "传入文件里面id即可"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
 // @Router /fileUploadAndDownload/deleteFile [post]
 func (u *FileUploadAndDownloadApi) DeleteFile(c *gin.Context) {
