@@ -10,6 +10,7 @@ import (
 	wtRes "goweb-gin-demo/model/wt/response"
 	"goweb-gin-demo/service/system"
 	"strconv"
+	"strings"
 )
 
 type WtReportsService struct {
@@ -45,7 +46,7 @@ func (wtReportsService *WtReportsService) GetWtReports(id uint) (err error, repo
 }
 
 // GetWtReportsInfoList 分页获取周报
-func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtReportsSearch) (err error, list []wtRes.WtReportsSearchResult, total int64) {
+func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtReportsSearch) (err error, list []wtRes.WtReportsSearchResult, total int64, ids []int) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
 
@@ -67,7 +68,7 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 	// 条件高级查询
 	if info.UserId > 0 {
 		condition += " and user_id = " + strconv.Itoa(int(info.UserId))
-	}else {
+	} else {
 		condition += " OR user_id = " + strconv.Itoa(int(info.CurrUserId)) + " "
 	}
 
@@ -92,9 +93,15 @@ func (wtReportsService *WtReportsService) GetWtReportsInfoList(info wtReq.WtRepo
 
 	err = global.GLOBAL_DB.Raw(querySql, limit, offset).Scan(&reportsSearchBOList).Error
 
+	// 获取所有周报内容的id列表
+	idsSplit := strings.Split(querySql, "FROM wt_reports")
+	idsSql := "SELECT id FROM wt_reports " + idsSplit[1]
+
+	err = global.GLOBAL_DB.Select("id").Raw(idsSql, int(total), 0).Scan(&ids).Error
+
 	reportsSearchResultList := reportsToSearchResult(reportsSearchBOList)
 
-	return err, reportsSearchResultList, total
+	return err, reportsSearchResultList, total, ids
 }
 
 //数据转换一下, 需要把json数据转换为字符串
@@ -143,9 +150,9 @@ func reportToSearchResult(searchBO wtRes.WtReportsSearchBO, user systemModel.Sys
 	searchResult.CommentCount = searchBO.CommentCount
 
 	if len(user.NickName) == 0 {
-		searchResult.NickName =  searchBO.UserName
+		searchResult.NickName = searchBO.UserName
 	} else {
-		searchResult.NickName =  user.NickName
+		searchResult.NickName = user.NickName
 	}
 
 	json.Unmarshal([]byte(searchBO.SendTo), &searchResult.SendTo)

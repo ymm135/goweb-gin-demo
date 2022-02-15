@@ -6,6 +6,7 @@ import (
 	"goweb-gin-demo/global"
 	"goweb-gin-demo/model/common/request"
 	"goweb-gin-demo/model/common/response"
+	"goweb-gin-demo/model/wt"
 	wtReq "goweb-gin-demo/model/wt/request"
 	"strconv"
 )
@@ -108,12 +109,13 @@ func (wtReportsApi *WtReportsApi) GetWtReportsList(c *gin.Context) {
 	var searchInfo wtReq.WtReportsSearch
 	_ = c.ShouldBindQuery(&searchInfo)
 
-	if err, list, total := wtReportsService.GetWtReportsInfoList(searchInfo); err != nil {
+	if err, list, total, ids := wtReportsService.GetWtReportsInfoList(searchInfo); err != nil {
 		global.GLOBAL_LOG.Error("获取失败!", zap.Any("err", err))
 		response.FailWithMessage("获取失败", c)
 	} else {
-		response.OkWithDetailed(response.PageResult{
+		response.OkWithDetailed(wt.PageResult{
 			List:     list,
+			Ids:      ids,
 			Total:    total,
 			Page:     searchInfo.Page,
 			PageSize: searchInfo.PageSize,

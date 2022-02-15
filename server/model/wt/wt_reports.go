@@ -30,3 +30,11 @@ type UploadFileJson struct {
 	Key  string `json:"key"`
 	Name string `json:"name"`
 }
+
+type PageResult struct {
+	List     interface{} `json:"list"`
+	Ids      []int       `json:"ids"`
+	Total    int64       `json:"total"`
+	Page     int         `json:"page"`
+	PageSize int         `json:"pageSize"`
+}
